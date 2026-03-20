@@ -21,7 +21,16 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: 'Segoe UI', sans-serif; }
-        body { background: var(--bg); color: #c9d1d9; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+        
+        body { 
+            background: url('back.jpg') no-repeat center center fixed; 
+            background-size: cover; 
+            color: #c9d1d9; 
+            height: 100vh; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+        }
 
         header { padding: 15px; background: var(--panel); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #30363d; z-index: 100; }
         
@@ -951,6 +960,7 @@ const App = {
                     
                     App.state.activeAction = false;
                     App.state.upgSelected = null;
+                    App.state.inventory = [...App.state.inventory];
                     App.Storage.save();
                     
                     // Обновляем инвентарь внизу без сброса рулетки
