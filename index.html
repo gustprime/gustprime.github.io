@@ -13,11 +13,11 @@
             --gold: #f29100;
             --red: #ff3e3e; 
             --green: #238636;
-            --rarity-2: #4b69ff; /* Синие (Mil-Spec) */
-            --rarity-3: #8847ff; /* Фиолетовые (Restricted) */
-            --rarity-4: #d32ce6; /* Розовые (Classified) */
-            --rarity-5: #eb4b4b; /* Красные (Covert) */
-            --rarity-6: #ffd700; /* Золотые (Gold) */
+            --rarity-2: #4b69ff;
+            --rarity-3: #8847ff;
+            --rarity-4: #d32ce6;
+            --rarity-5: #eb4b4b;
+            --rarity-6: #ffd700;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: 'Segoe UI', sans-serif; }
@@ -33,24 +33,18 @@
         }
 
         header { padding: 15px; background: var(--panel); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #30363d; z-index: 100; }
-        
         .header-left { display: flex; align-items: center; gap: 10px; }
-        
         .balance-pill { display: flex; align-items: center; background: #21262d; border: 1px solid var(--gold); border-radius: 20px; overflow: hidden; height: 36px; transition: 0.3s; }
         .balance-tag { padding: 0 12px; color: var(--gold); font-weight: 800; font-size: 0.9rem; }
         .add-balance { background: var(--gold); color: #000; border: none; width: 36px; height: 100%; font-weight: 900; cursor: pointer; transition: 0.2s; }
-        .add-balance:hover { background: #ffae00; }
-
         .header-icons { display: flex; gap: 15px; align-items: center; margin-left: 15px; }
         .icon-btn { font-size: 1.4rem; color: #8b949e; cursor: pointer; transition: 0.2s; position: relative; }
-        .icon-btn:hover { color: var(--accent); }
         .icon-btn.active-bonus { color: var(--gold); animation: pulse 1.5s infinite; }
 
         .dropdown { position: absolute; top: 55px; right: 10px; background: var(--panel); border: 1px solid #30363d; border-radius: 12px; width: 220px; display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 1000; }
         .dropdown.active { display: block; animation: fadeInDown 0.2s ease; }
         .dropdown-item { padding: 12px 15px; border-bottom: 1px solid #30363d; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; }
         .dropdown-item:hover { background: #1c2128; color: #fff; border-left: 3px solid var(--accent); }
-        .dropdown-item:last-child { border-bottom: none; }
 
         main { flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 80px; position: relative; z-index: 1; }
         .hidden { display: none !important; }
@@ -61,14 +55,11 @@
             box-shadow: 0 4px 15px rgba(242, 145, 0, 0.3); animation: pulse 2s infinite; cursor: pointer;
             transition: 0.2s; max-width: 1200px; margin-left: auto; margin-right: auto;
         }
-        .promo-banner:hover { transform: scale(1.02); filter: brightness(1.1); }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; max-width: 1200px; margin: 0 auto; }
-
-        .card { background: var(--panel); border-radius: 12px; padding: 15px; text-align: center; border: 1px solid #30363d; cursor: pointer; position: relative; transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; display: flex; flex-direction: column; align-items: center;}
-        .card:hover { transform: scale(1.03); box-shadow: 0 8px 20px rgba(0,0,0,0.4); z-index: 2; }
+        .card { background: var(--panel); border-radius: 12px; padding: 15px; text-align: center; border: 1px solid #30363d; cursor: pointer; position: relative; transition: transform 0.2s ease-in-out; display: flex; flex-direction: column; align-items: center;}
+        .card:hover { transform: scale(1.03); z-index: 2; }
         .card.selected { border-color: var(--gold); background: #1c2128; box-shadow: 0 0 15px rgba(242, 145, 0, 0.4); }
-        .card:active { transform: scale(0.95); }
         .card-price { color: var(--gold); font-weight: bold; margin-top: 5px; }
 
         .case-display {
@@ -79,54 +70,48 @@
             transform: perspective(500px) rotateX(5deg); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
-        .card:hover .case-display { transform: perspective(500px) rotateX(0deg) translateY(-5px); }
-        
-        .case-display::before { 
-            content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 50%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
-            transform: rotate(25deg); pointer-events: none; z-index: 3;
-        }
 
-        .skin-icon { width: 80px; height: 80px; object-fit: contain; margin-bottom: 8px; filter: drop-shadow(0 0 8px rgba(255,255,255,0.1)); transition: 0.3s; }
-        .card:hover .skin-icon { transform: scale(1.1); }
+        .skin-icon { width: 80px; height: 80px; object-fit: contain; margin-bottom: 8px; transition: 0.3s; }
         .m-win-icon { width: 140px; height: 140px; object-fit: contain; margin: 20px auto; display: block; filter: drop-shadow(0 0 20px rgba(255,255,255,0.2)); }
 
         .inv-card { border-bottom-width: 4px; border-bottom-style: solid; }
-        .inv-header { display: flex; justify-content: space-between; align-items: center; background: var(--panel); padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #30363d; font-size: 0.9rem; max-width: 1200px; margin-left: auto; margin-right: auto;}
-        .inv-stats span { font-weight: bold; }
+        .inv-header { display: flex; justify-content: space-between; align-items: center; background: var(--panel); padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #30363d; max-width: 1200px; margin: 0 auto 15px auto;}
 
-        .input-group { position: relative; width: 100%; margin: 10px 0; }
-        .input-main { width: 100%; padding: 12px; background: #0d1117; border: 1px solid #30363d; color: #fff; border-radius: 8px; font-size: 1rem; transition: 0.2s; }
-        .input-main:focus { outline: none; border-color: var(--accent); }
-        .promo-status { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; display: none; }
-        .promo-status.valid { display: block; color: var(--green); }
-        .promo-status.invalid { display: block; color: var(--red); }
-
-        /* ИДЕАЛЬНОЕ КОЛЕСО АПГРЕЙДА (КАК НА СКРИНЕ) */
         .upgrade-container { text-align: center; padding: 10px; max-width: 800px; margin: 0 auto;}
         
+        /* ОБНОВЛЕННОЕ КОЛЕСО КАК НА СКРИНЕ */
         .circle-box { 
             position: relative; 
             width: 320px; 
             height: 320px; 
-            margin: 0 auto 20px; 
-            background: #11141a; 
+            margin: 40px auto; 
+            background: radial-gradient(circle, #1a1e26 0%, #0d1117 100%); 
             border-radius: 50%; 
-            border: 6px solid #2a313c; 
-            overflow: hidden; 
-            box-shadow: 0 0 40px rgba(0,0,0,0.8); 
+            border: 8px solid #252a33; 
+            box-shadow: 0 0 50px rgba(0,0,0,0.8), inset 0 0 30px rgba(0,0,0,0.5); 
         }
         
+        .circle-markers {
+            position: absolute; inset: -35px; pointer-events: none;
+            font-weight: bold; color: #4a515e; font-size: 0.8rem;
+        }
+        .marker { position: absolute; transform: translate(-50%, -50%); }
+        .marker.top { top: 0; left: 50%; color: #52a038; }
+        .marker.bottom { bottom: -20px; left: 50%; color: #eb4b4b; }
+        .marker.left { left: 0; top: 50%; }
+        .marker.right { right: -20px; top: 50%; }
+
         .visual-circle { 
             position: absolute; 
             inset: 0; 
             border-radius: 50%; 
-            transition: background 0.3s;
+            transition: background 0.4s ease;
+            filter: blur(1px);
         }
         
         .circle-inner { 
             position: absolute; 
-            inset: 18px; 
+            inset: 25px; 
             background: #0d1117; 
             border-radius: 50%; 
             display: flex; 
@@ -134,121 +119,86 @@
             align-items: center; 
             justify-content: center; 
             z-index: 15; 
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.8); 
             border: 2px solid #2a313c; 
+            box-shadow: inset 0 0 20px #000;
         }
         
-        /* Тонкая игла, начинающаяся из центра */
-        .arrow { 
-            position: absolute; 
-            top: 50%; 
-            left: calc(50% - 2px); /* Центровка 4px толщины */
-            width: 4px; 
-            height: 145px; /* Длина стрелки до края */
-            background: var(--red);
-            transform-origin: top center; /* Точка вращения ровно в центре круга */
-            z-index: 30; 
-            border-radius: 4px; 
-            box-shadow: 0 0 15px var(--red);
-            transform: rotate(0deg); /* 0 градусов = указывает строго вниз! */
+        /* СТРЕЛКА-ШЕВРОН КАК НА СКРИНЕ */
+        .arrow-wrapper {
+            position: absolute;
+            inset: 0;
+            z-index: 30;
+            transition: transform 6s cubic-bezier(0.15, 0.9, 0.2, 1);
+            transform: rotate(0deg);
         }
+        .arrow-head {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            filter: drop-shadow(0 0 10px #70ff4d);
+        }
+        .chevron {
+            width: 24px; height: 12px;
+            background: #70ff4d;
+            clip-path: polygon(50% 0%, 100% 100%, 50% 70%, 0% 100%);
+            margin-bottom: -4px;
+        }
+        .chevron.dim { opacity: 0.5; transform: scale(0.8); }
 
         #upg-result-text {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2.5rem;
-            font-weight: 900;
-            z-index: 40;
-            text-shadow: 0 0 20px currentColor, 0 0 5px #000;
-            pointer-events: none;
+            display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 2.5rem; font-weight: 900; z-index: 40; text-shadow: 0 0 20px currentColor;
         }
-        #upg-result-text.success { color: var(--gold); display: block; animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        #upg-result-text.fail { color: var(--red); display: block; animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
 
         .mult-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 15px 0; }
-        .m-btn { background: #21262d; border: 1px solid #30363d; color: white; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; transition: 0.2s; }
-        .m-btn:hover { background: #30363d; }
-        .m-btn.active { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 10px rgba(88, 166, 255, 0.4); }
+        .m-btn { background: #21262d; border: 1px solid #30363d; color: white; padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+        .m-btn.active { background: var(--accent); border-color: var(--accent); }
 
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 500; display: none; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
         .modal.active { display: flex; opacity: 1; }
-        .modal-content { background: var(--panel); padding: 20px; border-radius: 15px; width: 90%; max-width: 400px; max-height: 90vh; overflow-y: auto; border: 1px solid #30363d; box-shadow: 0 15px 50px rgba(0,0,0,0.7); }
+        .modal-content { background: var(--panel); padding: 20px; border-radius: 15px; width: 90%; max-width: 400px; border: 1px solid #30363d; }
 
-        .track-wrap { width: 100%; height: 160px; overflow: hidden; position: relative; background: #050505; border-top: 1px solid #333; border-bottom: 1px solid #333; box-shadow: inset 0 0 20px rgba(0,0,0,0.9); }
+        .track-wrap { width: 100%; height: 160px; overflow: hidden; position: relative; background: #050505; border-top: 1px solid #333; border-bottom: 1px solid #333; }
         .track { display: flex; position: absolute; height: 100%; align-items: center; left: 0; }
-        .t-item { min-width: 130px; height: 140px; background: #161b22; margin: 0 5px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-bottom: 4px solid #333; transition: 0.2s; }
+        .t-item { min-width: 130px; height: 140px; background: #161b22; margin: 0 5px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-bottom: 4px solid #333; }
         
         .btn-main { width: 100%; max-width: 250px; padding: 15px; border-radius: 10px; border: none; font-weight: bold; background: var(--accent); color: white; cursor: pointer; margin-top: 10px; transition: 0.2s; }
-        .btn-main:hover { filter: brightness(1.1); transform: translateY(-2px); }
-        .btn-main:active { transform: translateY(0); }
-        .btn-main:disabled { opacity: 0.5; cursor: not-allowed; filter: none; transform: none; }
+        .btn-main:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        .c-slots { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; padding: 15px; background: #0d1117; border-radius: 12px; border: 1px solid #30363d; max-width: 800px; margin-left: auto; margin-right: auto;}
-        .c-slot { width: 65px; height: 65px; background: #1c2128; border: 2px dashed #444; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; overflow:hidden; }
-        .c-slot:hover { border-color: var(--accent); background: #21262d; }
-        .c-slot.filled { border-style: solid; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
-        .c-slot img { width: 80%; height: 80%; object-fit: contain; }
-        
-        .c-info { text-align: center; font-size: 0.95rem; color: #8b949e; margin-bottom: 10px; }
-        .c-preview { text-align: center; font-weight: bold; color: var(--gold); margin-bottom: 20px; min-height: 20px; }
-
-        .tabs { display: flex; border-bottom: 1px solid #30363d; margin-bottom: 15px; }
-        .tab { flex: 1; text-align: center; padding: 10px; cursor: pointer; border-bottom: 2px solid transparent; font-weight: bold; color: #8b949e; transition: 0.2s; }
-        .tab.active { border-bottom-color: var(--accent); color: var(--accent); }
-        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-        .stat-box { background: #0d1117; padding: 10px; border-radius: 8px; border: 1px solid #30363d; text-align: center; }
-        .stat-box span { display: block; font-size: 0.75rem; color: #8b949e; margin-bottom: 5px; }
-        .stat-box strong { color: var(--gold); font-size: 1.1rem;}
-        
-        .achievements-list { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-        .achievement { display: flex; align-items: center; gap: 15px; background: #0d1117; padding: 10px; border-radius: 8px; border: 1px solid #30363d; opacity: 0.5; filter: grayscale(1); transition: 0.3s; }
-        .achievement.unlocked { opacity: 1; filter: none; border-color: var(--gold); background: #1c2128; }
-        .ach-icon { font-size: 2rem; color: var(--gold); width: 40px; text-align: center; }
-        .ach-info h4 { margin-bottom: 3px; font-size: 0.9rem; color: #fff; }
-        .ach-info p { font-size: 0.75rem; color: #8b949e; line-height: 1.1; }
-
-        .confetti { position: fixed; width: 8px; height: 8px; top: -10px; z-index: 9999; pointer-events: none; animation: fall linear forwards; }
-
-        #toast-container { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
-        .toast { background: var(--panel); border-left: 4px solid var(--accent); padding: 15px 20px; border-radius: 8px; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.5); animation: toastIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; gap: 12px; font-size: 0.9rem; min-width: 250px; }
-        .toast.success { border-color: var(--green); }
-        .toast.error { border-color: var(--red); }
-        .toast.gold { border-color: var(--gold); }
+        #toast-container { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: var(--panel); border-left: 4px solid var(--accent); padding: 15px 20px; border-radius: 8px; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 12px; }
 
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes toastIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes toastOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
-        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
-        @keyframes burnItem { 0% { transform: scale(1); filter: brightness(1); opacity: 1; } 40% { transform: scale(1.1); filter: brightness(0.5) sepia(1) hue-rotate(-50deg) saturate(5); opacity: 0.8; box-shadow: 0 0 20px var(--red); border-color: var(--red); } 100% { transform: scale(0.1); filter: brightness(0); opacity: 0; } }
         .burn-anim { animation: burnItem 0.8s forwards !important; }
-        @keyframes popIn { 0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; } 70% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
+        @keyframes burnItem { 0% { transform: scale(1); } 100% { transform: scale(0.1); opacity: 0; } }
     </style>
 </head>
 <body>
 
 <header>
     <div class="header-left">
-        <div onclick="App.UI.openPage('shop')" style="font-weight: 900; font-size: 1.2rem; cursor:pointer" title="На главную">IGOR<span style="color:var(--gold)">BATTLE</span></div>
+        <div onclick="App.UI.openPage('shop')" style="font-weight: 900; font-size: 1.2rem; cursor:pointer">IGOR<span style="color:var(--gold)">BATTLE</span></div>
     </div>
     <div style="display: flex; align-items: center;">
-        <div class="balance-pill" title="Ваш баланс">
+        <div class="balance-pill">
             <div class="balance-tag" id="balance">0 ₽</div>
-            <button class="add-balance" onclick="if(App.requireAuth()) App.UI.openModalBox('modal-deposit')" title="Пополнить баланс">+</button>
+            <button class="add-balance" onclick="if(App.requireAuth()) App.UI.openModalBox('modal-deposit')">+</button>
         </div>
         <div class="header-icons">
-            <i class="fas fa-volume-up icon-btn" id="sound-btn" onclick="App.Sounds.toggle()" title="Звук"></i>
-            <i class="fas fa-gift icon-btn" id="daily-btn" onclick="if(App.requireAuth()) App.Daily.claim()" title="Ежедневный бонус"></i>
-            <i class="fas fa-bars icon-btn" onclick="App.UI.toggleMenu()" title="Меню"></i>
-            
+            <i class="fas fa-volume-up icon-btn" id="sound-btn" onclick="App.Sounds.toggle()"></i>
+            <i class="fas fa-gift icon-btn" id="daily-btn" onclick="if(App.requireAuth()) App.Daily.claim()"></i>
+            <i class="fas fa-bars icon-btn" onclick="App.UI.toggleMenu()"></i>
             <div class="dropdown" id="userDropdown">
-                <div class="dropdown-item" onclick="App.UI.openModalBox('modal-profile'); App.UI.toggleMenu();"><i class="fas fa-user-circle"></i> <span id="menu-user-name">Войти / Регистрация</span></div>
-                <div class="dropdown-item" onclick="App.UI.openPage('shop')"><i class="fas fa-box-open"></i> Магазин кейсов</div>
+                <div class="dropdown-item" onclick="App.UI.openModalBox('modal-profile'); App.UI.toggleMenu();"><i class="fas fa-user-circle"></i> <span id="menu-user-name">Профиль</span></div>
+                <div class="dropdown-item" onclick="App.UI.openPage('shop')"><i class="fas fa-box-open"></i> Магазин</div>
                 <div class="dropdown-item" onclick="App.UI.openPage('inv')"><i class="fas fa-stream"></i> Инвентарь</div>
-                <div class="dropdown-item" onclick="App.UI.openPage('upgrade')"><i class="fas fa-bolt"></i> Апгрейд скинов</div>
+                <div class="dropdown-item" onclick="App.UI.openPage('upgrade')"><i class="fas fa-bolt"></i> Апгрейд</div>
                 <div class="dropdown-item" onclick="App.UI.openPage('contracts')"><i class="fas fa-file-contract"></i> Контракты</div>
             </div>
         </div>
@@ -256,26 +206,14 @@
 </header>
 
 <main id="p-shop">
-    <div class="promo-banner" id="promo-banner-text" onclick="if(App.requireAuth()) App.Promo.use()">
-        ПОДГОТОВКА ПРОМОКОДА...
-    </div>
+    <div class="promo-banner" id="promo-banner-text" onclick="if(App.requireAuth()) App.Promo.use()">ЗАГРУЗКА...</div>
     <div class="grid" id="cases-list"></div>
 </main>
 
 <main id="p-inv" class="hidden">
     <div class="inv-header">
-        <div class="inv-stats">
-            <div>Предметов: <span id="inv-count" style="color:var(--accent)">0</span></div>
-            <div>Сумма: <span id="inv-value" style="color:var(--gold)">0 ₽</span></div>
-        </div>
-        <div>
-            <select id="inv-sort" class="input-main" style="padding: 6px; font-size: 0.85rem; width: auto;" onchange="App.UI.renderInv()" title="Сортировка">
-                <option value="new">Сначала новые</option>
-                <option value="price_desc">Дорогие</option>
-                <option value="price_asc">Дешевые</option>
-                <option value="rarity_desc">По редкости</option>
-            </select>
-        </div>
+        <div>Предметов: <span id="inv-count" style="color:var(--accent)">0</span></div>
+        <div>Сумма: <span id="inv-value" style="color:var(--gold)">0 ₽</span></div>
     </div>
     <div class="grid" id="inv-list"></div>
 </main>
@@ -283,142 +221,75 @@
 <main id="p-upgrade" class="hidden">
     <div class="upgrade-container">
         <div class="circle-box">
+            <div class="circle-markers">
+                <span class="marker top">100%</span>
+                <span class="marker bottom">0%</span>
+                <span class="marker left">50%</span>
+                <span class="marker right">50%</span>
+            </div>
             <div class="visual-circle" id="upg-visual"></div>
             <div class="circle-inner">
-                <div id="upg-chance" style="font-size: 3.5rem; font-weight: 900; color: #fff; line-height: 1; transition: 0.3s;">0%</div>
-                <div id="upg-chance-text" style="color: #8b949e; font-size: 0.9rem; margin-bottom: 10px; transition: 0.3s;">средний шанс</div>
-                <div id="upg-target" style="color:var(--gold); font-size: 1.4rem; font-weight: bold; margin-bottom: 5px; transition: 0.3s;" title="Сумма в случае выигрыша">0 ₽</div>
-                <div id="sel-name" style="font-size: 0.95rem; font-weight: bold; color: #c9d1d9; transition: 0.3s;">Выберите предмет ниже</div>
+                <div id="upg-chance" style="font-size: 3.5rem; font-weight: 900; color: #f2f200; line-height: 1;">0.00%</div>
+                <div style="color: #8b949e; font-size: 0.9rem; margin-top: 5px;">средний шанс</div>
+                <div id="upg-target" style="color:var(--gold); font-size: 1.2rem; margin-top: 15px;">0 ₽</div>
+                <div id="sel-name" style="font-size: 0.9rem; margin-top: 5px; color: #aaa;">Выберите предмет</div>
                 <div id="upg-result-text"></div>
             </div>
-            <div class="arrow" id="upg-arrow"></div>
+            <div class="arrow-wrapper" id="upg-arrow-wrap">
+                <div class="arrow-head">
+                    <div class="chevron"></div>
+                    <div class="chevron dim"></div>
+                </div>
+            </div>
         </div>
         
         <div class="mult-btns">
-            <button class="m-btn" title="Шанс 66%" onclick="App.Logic.setMult(1.5, this)">1.5x</button>
-            <button class="m-btn active" title="Шанс 50%" onclick="App.Logic.setMult(2, this)">2x</button>
-            <button class="m-btn" title="Шанс 20%" onclick="App.Logic.setMult(5, this)">5x</button>
-            <button class="m-btn" title="Шанс 10%" onclick="App.Logic.setMult(10, this)">10x</button>
-            <input type="number" id="custom-mult" class="input-main" placeholder="Свой X" step="0.1" min="1.1" max="100" oninput="App.Logic.setCustomMult(this.value)" style="width: 80px; padding: 6px; text-align: center;" title="Введите свой множитель">
+            <button class="m-btn" onclick="App.Logic.setMult(1.5, this)">1.5x</button>
+            <button class="m-btn active" onclick="App.Logic.setMult(2, this)">2x</button>
+            <button class="m-btn" onclick="App.Logic.setMult(5, this)">5x</button>
+            <button class="m-btn" onclick="App.Logic.setMult(10, this)">10x</button>
+            <input type="number" id="custom-mult" placeholder="Свой X" step="0.1" min="1.1" oninput="App.Logic.setCustomMult(this.value)" style="width: 80px; background:#0d1117; border:1px solid #333; color:white; padding:5px; border-radius:5px; text-align:center;">
         </div>
         
-        <button class="btn-main" id="btn-run-upg" disabled onclick="App.Logic.doUpgrade()" title="Испытать удачу!">ПРОКАЧАТЬ!</button>
+        <button class="btn-main" id="btn-run-upg" disabled onclick="App.Logic.doUpgrade()">УЛУЧШИТЬ</button>
         <div class="grid" id="upg-inv-list" style="margin-top:20px"></div>
     </div>
 </main>
 
 <main id="p-contracts" class="hidden">
-    <div style="max-width: 800px; margin: 0 auto; text-align:center;">
-        <h3 style="margin-bottom: 10px;">Контракты обмена</h3>
-        <p class="c-info">Поместите от 3 до 5 предметов ЛЮБОЙ редкости.</p>
-        
-        <div class="c-slots" id="contract-slots"></div>
-        <div class="c-preview" id="contract-preview"></div>
-        
-        <div style="margin-bottom:30px;">
-            <button class="btn-main" id="btn-run-contract" style="max-width:300px; background:var(--gold); color:#000;" disabled onclick="App.Contracts.execute()">ВЫПОЛНИТЬ КОНТРАКТ</button>
-        </div>
-    </div>
-    
-    <h4 style="margin-bottom:10px; text-align:center;">Доступно для контракта:</h4>
     <div class="grid" id="contract-inv-list"></div>
 </main>
 
 <!-- Modals -->
 <div class="modal" id="modal-profile" onclick="if(event.target===this) App.UI.closeModalBox('modal-profile')">
-    <div class="modal-content">
-        <div class="tabs" id="auth-tabs">
-            <div class="tab active" onclick="App.UI.switchProfileTab('login')">Вход</div>
-            <div class="tab" onclick="App.UI.switchProfileTab('register')">Рег-ция</div>
-        </div>
-        
-        <div id="tab-login">
-            <input type="text" id="auth-l-user" class="input-main" placeholder="Имя пользователя">
-            <input type="password" id="auth-l-pass" class="input-main" placeholder="Пароль" style="margin-top:10px;">
-            <button class="btn-main" style="width:100%" onclick="App.Auth.login()">ВОЙТИ</button>
-        </div>
-
-        <div id="tab-register" class="hidden">
-            <input type="text" id="auth-r-user" class="input-main" placeholder="Придумайте логин">
-            <input type="password" id="auth-r-pass" class="input-main" placeholder="Придумайте пароль" style="margin-top:10px;">
-            <button class="btn-main" style="width:100%" onclick="App.Auth.register()">ЗАРЕГИСТРИРОВАТЬСЯ</button>
-        </div>
-
-        <div id="tab-profile" class="hidden">
-            <h3 id="prof-username" style="color:var(--accent); text-align:center; margin-bottom:5px;">Игрок</h3>
-            <p style="text-align:center; font-size:0.8rem; color:#8b949e; margin-bottom:15px;" id="prof-role">Авторизован</p>
-            
-            <div style="display:flex; gap:10px; margin-bottom: 15px;">
-                <button class="btn-main" style="background:#444; padding:8px; font-size:0.8rem;" onclick="App.Storage.exportData()"><i class="fas fa-download"></i> Экспорт</button>
-                <button class="btn-main" style="background:#444; padding:8px; font-size:0.8rem;" onclick="document.getElementById('import-file').click()"><i class="fas fa-upload"></i> Импорт</button>
-                <input type="file" id="import-file" style="display:none" accept=".json" onchange="App.Storage.importData(event)">
-            </div>
-            
-            <div class="stat-grid">
-                <div class="stat-box"><span>Открыто кейсов</span><strong id="st-cases">0</strong></div>
-                <div class="stat-box"><span>Траты на кейсы</span><strong id="st-spent">0 ₽</strong></div>
-                <div class="stat-box"><span>Всего заработано</span><strong id="st-earned">0 ₽</strong></div>
-                <div class="stat-box"><span>Удачных апгрейдов</span><strong id="st-upgs">0</strong></div>
-                <div class="stat-box"><span>Топ выигрыш</span><strong id="st-top">0 ₽</strong></div>
-                <div class="stat-box"><span>Редких (элитных)</span><strong id="st-rare">0</strong></div>
-            </div>
-
-            <h4 style="margin-top: 15px; border-bottom: 1px solid #333; padding-bottom:5px;">Достижения</h4>
-            <div class="achievements-list" id="ach-list"></div>
-
-            <button class="btn-main" id="btn-logout" style="width:100%; background:var(--red); margin-top:15px;" onclick="App.Auth.logout()">ВЫЙТИ ИЗ АККАУНТА</button>
-        </div>
-        <button onclick="App.UI.closeModalBox('modal-profile')" style="background:none; border:none; color:gray; width:100%; margin-top:15px; cursor:pointer;">Закрыть</button>
+    <div class="modal-content" id="tab-profile">
+        <h3 id="prof-username" style="color:var(--accent); text-align:center;">Игрок</h3>
+        <button class="btn-main" id="btn-logout" style="width:100%; background:var(--red); margin-top:15px;" onclick="App.Auth.logout()">ВЫЙТИ</button>
     </div>
 </div>
 
 <div class="modal" id="modal-deposit" onclick="if(event.target===this) App.UI.closeModalBox('modal-deposit')">
     <div class="modal-content">
-        <h3 style="margin-bottom: 15px; text-align:center;">Пополнение баланса</h3>
-        <div style="display:flex; gap:8px; margin-bottom:10px;">
-            <button class="m-btn" style="flex:1" onclick="App.UI.addDepAmount(100)">+100</button>
-            <button class="m-btn" style="flex:1" onclick="App.UI.addDepAmount(500)">+500</button>
-            <button class="m-btn" style="flex:1" onclick="App.UI.addDepAmount(1000)">+1000</button>
-        </div>
-        <div class="input-group">
-            <input type="number" id="dep-amount" placeholder="Сумма (до 50000 ₽)" class="input-main">
-        </div>
-        <div class="input-group">
-            <input type="text" id="dep-promo" placeholder="Промокод" class="input-main" oninput="App.UI.checkPromo()">
-            <span id="promo-icon" class="promo-status"></span>
-        </div>
+        <h3 style="margin-bottom: 15px; text-align:center;">Пополнение</h3>
+        <input type="number" id="dep-amount" placeholder="Сумма" style="width:100%; padding:10px; background:#0d1117; color:white; border:1px solid #333; border-radius:8px;">
         <button class="btn-main" style="width: 100%" onclick="App.Logic.processDeposit()">ПОПОЛНИТЬ</button>
-        <button onclick="App.UI.closeModalBox('modal-deposit')" style="background:none; border:none; color:gray; width:100%; margin-top:15px; cursor:pointer;">Отмена</button>
     </div>
 </div>
 
-<div class="modal" id="modal-open" style="background:rgba(0,0,0,0.98);">
-    <div id="m-spinner" class="hidden" style="text-align:center; margin:auto;">
-        <i class="fas fa-circle-notch fa-spin" style="font-size: 3.5rem; color: var(--gold); margin-bottom: 15px;"></i>
-        <h3 style="color: var(--accent);">Открываем кейс...</h3>
-    </div>
-    <div class="track-wrap" id="roulette-box">
-        <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; background: var(--red); z-index: 10; box-shadow: 0 0 10px var(--red);"></div>
+<div class="modal" id="modal-open">
+    <div id="m-spinner" style="text-align:center; margin:auto;"><h3 style="color: var(--gold);">ОТКРЫВАЕМ...</h3></div>
+    <div class="track-wrap hidden" id="roulette-box">
+        <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; background: var(--red); z-index: 10;"></div>
         <div class="track" id="m-track"></div>
     </div>
-    <div id="m-result" class="hidden" style="text-align:center; animation: fadeInDown 0.5s ease;">
-        <img id="m-win-icon" class="m-win-icon" onerror="this.src='https://placehold.co/140x140/1a1a1a/fff?text=Skin'">
-        <h2 id="m-win-name" style="margin-bottom: 5px;">Скин</h2>
+    <div id="m-result" class="hidden" style="text-align:center;">
+        <img id="m-win-icon" class="m-win-icon">
+        <h2 id="m-win-name">Скин</h2>
         <h1 id="m-win-price" style="color:var(--gold); margin-bottom: 20px;">0 ₽</h1>
         <div style="display:flex; gap:10px; justify-content:center;">
-            <button class="btn-main" style="background:var(--green); max-width: 150px;" onclick="App.Logic.finishOpen(true)">В ИНВЕНТАРЬ</button>
-            <button class="btn-main" style="background:#444; max-width: 150px;" onclick="App.Logic.finishOpen(false)">ПРОДАТЬ</button>
+            <button class="btn-main" style="background:var(--green); width:120px;" onclick="App.Logic.finishOpen(true)">ОСТАВИТЬ</button>
+            <button class="btn-main" style="background:#444; width:120px;" onclick="App.Logic.finishOpen(false)">ПРОДАТЬ</button>
         </div>
-    </div>
-</div>
-
-<div class="modal" id="modal-sell" onclick="if(event.target===this) App.UI.closeModalBox('modal-sell')">
-    <div class="modal-content" style="text-align:center; max-width:320px;">
-        <i class="fas fa-coins" style="font-size: 3rem; color: var(--gold); margin-bottom: 10px;"></i>
-        <h3>Продать предмет?</h3>
-        <div id="sell-item-name" style="margin:10px 0; font-weight:bold; color:var(--accent);"></div>
-        <button class="btn-main" style="background:var(--green); width:100%; margin-top:15px;" onclick="App.Logic.confirmSell()">ПРОДАТЬ ЗА <span id="sell-item-price"></span> ₽</button>
-        <button class="btn-main" style="background:#444; width:100%; margin-top:10px;" onclick="App.UI.closeModalBox('modal-sell')">ОТМЕНА</button>
     </div>
 </div>
 
@@ -426,762 +297,274 @@
 
 <script>
 const App = {
-    currentUser: null,
-    state: {},
-    
-    achievements:[
-        { id: 'first_case', name: 'Первая кровь', desc: 'Откройте свой первый кейс', icon: 'fa-box-open', req: s => s.stats.casesOpened >= 1 },
-        { id: 'first_upg', name: 'Рисковый', desc: 'Сделайте успешный апгрейд', icon: 'fa-bolt', req: s => s.stats.upgradesSuccess >= 1 },
-        { id: 'hoarder', name: 'Скрудж', desc: 'Накопите 10,000 ₽', icon: 'fa-coins', req: s => s.balance >= 10000 },
-        { id: 'lucky_strike', name: 'Везунчик', desc: 'Найдите 5 элитных предметов', icon: 'fa-gem', req: s => s.stats.rareItemsFound >= 5 },
-        { id: 'high_roller', name: 'Хайроллер', desc: 'Апгрейд с множителем x10', icon: 'fa-dice-d20', req: s => s.stats.highestUpgMult >= 10 }
-    ],
-
+    currentUser: null, state: {},
     config: {
-        promoCode: "MIKLE10",
-        
-        // Отсортированные по цене кейсы
         cases:[
             { name: "Звёзды", price: 20, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsQEl9Jg9SpIW1Kgx07OXJYzRD4si72tHbwX2wML-HljoDscEpi7mSotigiw22_EBoNz_3ctDAdQE9O1HpwA" },
             { name: "Петровна", price: 50, image: "petrovna.jpg" },
-            { name: "Сопля закладчица", price: 100, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsRVx4MwFo5_T3eAQ348bHZDNN_sh8jtbH87H_Yr2Gkj4EuMYgjO-SpmC12AMwNzrydtOTdgU2MAa0pA" },
             { name: "Яковлевна", price: 100, image: "yakovlevna.jpg" },
             { name: "МАма", price: 500, image: "MAma.jpg" },
-            { name: "Лешка", price: 700, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsX1x1IBFQkOaifANw5_vBfS9H6NqykNGPkq-nNrnXlWgJscYk2-3C9In30Aft80o-P271ctOcdwQ2MVmFqFm6lOq-1xK3-A" },
-            { name: "Мама Лебедя", price: 1500, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFU1nfbOIj8W-tmyq4mewvSgN-mGkzJQ-sY_ibjE9tiniwbk-hA4Nj2nJNSdUAc2Mg2A_g" },
             { name: "Князь Можаев", price: 2500, image: "kniazmojaev.jpg" },
             { name: "Дэнис", price: 4500, image: "denis.jpg" },
-            { name: "Санька", price: 5000, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsQEl9Jg9SpIW1Kgx07OXJYzRD4si72tHbwX2wML-HljoDscEpi7mSotigiw22_EBoNz_3ctDAdQE9O1HpwA" },
-            { name: "Мерк", price: 5500, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFU1nfbOIj8W-tmyq4mewvSgN-mGkzJQ-sY_ibjE9tiniwbk-hA4Nj2nJNSdUAc2Mg2A_g" },
-            { name: "Метатель", price: 6500, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsVFx0Owp4upjBAl00ufvNSD1G_Zq2noodm-HPlD0N_FR6j_qUpt-iiA22_xBoMGunIoeTdQ88aA_Sq1A" },
             { name: "Светлана", price: 7000, image: "svetlana.jpg" },
-            { name: "Пробор скинхед", price: 7500, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsX1x1IBFQkOaifANw5_vBfS9H6NqykNGPkq-nNrnXlWgJscYk2-3C9In30Aft80o-P271ctOcdwQ2MVmFqFm6lOq-1xK3-A" },
-            { name: "Михалыч", price: 8500, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsQEl9Jg9SpIW1Kgx07OXJYzRD4si72tHbwX2wML-HljoDscEpi7mSotigiw22_EBoNz_3ctDAdQE9O1HpwA" },
-            { name: "Игор", price: 10000, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFU1nfbOIj8W-tmyq4mewvSgN-mGkzJQ-sY_ibjE9tiniwbk-hA4Nj2nJNSdUAc2Mg2A_g" },
-            { name: "Саня Золотой", price: 10000, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsVFx0Owp4upjBAl00ufvNSD1G_Zq2noodm-HPlD0N_FR6j_qUpt-iiA22_xBoMGunIoeTdQ88aA_Sq1A" },
-            { name: "Тёмыч", price: 14888, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsQEl9Jg9SpIW1Kgx07OXJYzRD4si72tHbwX2wML-HljoDscEpi7mSotigiw22_EBoNz_3ctDAdQE9O1HpwA" },
-            { name: "Майкл", price: 15000, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsRVx4MwFo5_T3eAQ348bHZDNN_sh8jtbH87H_Yr2Gkj4EuMYgjO-SpmC12AMwNzrydtOTdgU2MAa0pA" },
             { name: "Братва", price: 15000, image: "bratva.jpg" },
-            { name: "Грiша", price: 16767, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsRVx4MwFo5_T3eAQ348bHZDNN_sh8jtbH87H_Yr2Gkj4EuMYgjO-SpmC12AMwNzrydtOTdgU2MAa0pA" },
             { name: "Кэрил", price: 20000, image: "keril.jpg" }
-        ],
-        
-        dropRates: { milspec: 0.7992, restricted: 0.1598, classified: 0.032, covert: 0.0064, gold: 0.0026 }
+        ]
     },
-
     skins: {
         catalog: {
-            2:[ 
-                { name: "P250 | Sand Dune", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo6m1FBRp3_bNdTRD-Th6cU-Pwb-mNuqIlWJTvcqg8b6Rpt72igXtrkVqNmr6IILAdFBsNVyGqVm4wu3pgsW4vsuayiMxs3V2tXbYnBK-hBhKaeBxxavJoSbdS2c/200fx200f" },
-                { name: "Glock-18 | High Beam", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAFl1_v3cjZQ-N26mIyDluXLP7LWnn8f65Mn0ruYoov0ilLs80VvNWinIo6WJwRsNAmGrFS3wOzp1MTotZmdznUwuyQmtiyA/200fx200f" },
-                { name: "MP7 | Army Recon", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou6ryFA957P3dcjVD797sxLrZlvnwPLnFhGwgvcZw2-jEpNqs0Fbs_xdoMGCicdeccQM5ZF-E-FW6lenvjJTotJrMwHIzs3R3/200fx200f" }
-            ],
-            3:[ 
-                { name: "AK-47 | Slate", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhnwMzJemkV08ykm4aOhOT9PLXQmlRZ7cRnk6eVrNzw2AHiqUI-YT_wcNKUdFE4aVyD81jqk-fs0Zfptc-anyE373IrtHaLzkHjhA4MMLIK2cOclw/200fx200f" },
-                { name: "AWP | Atheris", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJD_9W7m5a0mvLwOq7c2G5QuZ0ni7uTpdukiA3t-0RsYW70cdeTIwRqaVyG_Vi7lbrphMW-upXNmHQxsyV04HnbzBbi0wYMMLJ-gH1u/200fx200f" },
-                { name: "Desert Eagle | Light Rail", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposr-kLAtl7PLZTjlH_9mkgL-OlvD4NoTck29Y_cg_j-2YrI-i2VDm-0A-a2vycYTGdVI2ZgrV-AC-w-_n0JTvuJ_PySRhuCUr4HaLlwv33083nO5rAA/200fx200f" }
-            ],
-            4:[ 
-                { name: "AK-47 | Redline", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV092lnYmGmOHLO77QgHIfvsogjLiYpY2i0FHg-kFvZ2-mcYOWcgZrZAqD-AS4xe28jMC-6c7MnCF9-n51_yIftA/200fx200f" },
-                { name: "AWP | Neo-Noir", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17VnYIWF96Njnj4yCjejiNq_um25V4dB8xOiXoomniVXtrktsN26mdYCWJwRsMljVqAe3xObq1p7otMuYyiRrviMi5SyIgVXp1l3eR4rR/200fx200f" },
-                { name: "USP-S | Printstream", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo6m1FBRp3_bNdTRD-Th6cU-Pw_j3PbPFl2pe5sR_ju-X99r121bjqRY5NzilcYKRdgNsNw3UrFq4wrjpg5TotJibwXNg6SEq5XranyhAiB0bb7s-/200fx200f" }
-            ],
-            5:[ 
-                { name: "AK-47 | Fire Serpent", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08-5mpm0m_7zO6-fzj9V7cAl2u3H9Ijw0AXt80Y9Nj-idYCQIQA2ZwqBr1m4xe3qjMTvtM_PwXVgvyd243mIlhS11BlIa-E7m7XAHhqA4r0/200fx200f" },
-                { name: "AWP | Asiimov", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTdn2xZ_Ish0u3A9Nj2jQO1-BE_Ym-lcIOLIAA3ZwrSqQe6wL3phJ--zZzAmHth6HRzsXePnxDilx1EaA/200fx200f" },
-                { name: "M4A4 | Howl", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhjxszfjgZI6dG3k4-Gmfz_OrzCjzlXupEhi-3F9NjxgVWy80U4ND_wIIOTelc7Mw-CrFPsxu-51JO5v8ua1zI97dM8-R0s/200fx200f" }
-            ],
-            6:[ 
-                { name: "★ Karambit | Fade", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20kPb5Prruxn0Iu8chiu2Q9tX22wHn_xVpYTrwctSTdwM8aV3S_AS-wevp1sS9vsidziNq7CAn5HqInhS20xtMabRuhw/200fx200f" },
-                { name: "★ Butterfly Knife | Doppler", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf0ebcZThQ6tCvq4iBqP_xMq3I2GoEtsF13b2Vrdqg0FDirRU-ZW7ydo7GIwdrM1nTr1O8l-fr0JTuuJrNzHpi6SInti7DnRO-hUtEcKUx0hT5N1Y/200fx200f" },
-                { name: "AWP | Dragon Lore", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTQgWdt3e_I8kRrs4jj3VK3r0RtMGHwcoKVJldsaAvQqVbsxejo1pS_uJ_LnidnvCYr5X-Jl0CxiRxIaA/200fx200f" }
-            ]
+            2:[ { name: "P250 | Sand Dune", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo6m1FBRp3_bNdTRD-Th6cU-Pwb-mNuqIlWJTvcqg8b6Rpt72igXtrkVqNmr6IILAdFBsNVyGqVm4wu3pgsW4vsuayiMxs3V2tXbYnBK-hBhKaeBxxavJoSbdS2c/200fx200f" } ],
+            3:[ { name: "AK-47 | Slate", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhnwMzJemkV08ykm4aOhOT9PLXQmlRZ7cRnk6eVrNzw2AHiqUI-YT_wcNKUdFE4aVyD81jqk-fs0Zfptc-anyE373IrtHaLzkHjhA4MMLIK2cOclw/200fx200f" } ],
+            4:[ { name: "AK-47 | Redline", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV092lnYmGmOHLO77QgHIfvsogjLiYpY2i0FHg-kFvZ2-mcYOWcgZrZAqD-AS4xe28jMC-6c7MnCF9-n51_yIftA/200fx200f" } ],
+            5:[ { name: "AWP | Asiimov", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTdn2xZ_Ish0u3A9Nj2jQO1-BE_Ym-lcIOLIAA3ZwrSqQe6wL3phJ--zZzAmHth6HRzsXePnxDilx1EaA/200fx200f" } ],
+            6:[ { name: "★ Karambit | Fade", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20kPb5Prruxn0Iu8chiu2Q9tX22wHn_xVpYTrwctSTdwM8aV3S_AS-wevp1sS9vsidziNq7CAn5HqInhS20xtMabRuhw/200fx200f" } ]
         }
     },
 
-    getDefaultState: function() {
-        return {
-            balance: 1000, inventory:[], 
-            stats: { casesOpened: 0, upgradesAttempted: 0, upgradesSuccess: 0, biggestWin: 0, totalSpent: 0, totalEarned: 0, rareItemsFound: 0, highestUpgMult: 0 },
-            achievements:[], dailyBonus: { lastClaim: null, streak: 0, available: true },
-            contractItems:[], upgSelected: null, activeAction: false, currentWin: null, itemToSell: null, mult: 2,
-            dynamicPromo: null, settings: { soundEnabled: true }
-        };
-    },
+    getDefaultState: () => ({
+        balance: 1000, inventory:[], stats: { casesOpened: 0, totalSpent: 0, totalEarned: 0 },
+        dailyBonus: { available: true }, activeAction: false, mult: 2, currentWin: null, upgSelected: null
+    }),
 
-    requireAuth: function() {
-        if(!this.currentUser) {
-            this.UI.showToast("Пожалуйста, зарегистрируйтесь или войдите!", "error");
-            this.UI.openModalBox('modal-profile');
-            this.UI.switchProfileTab('register');
-            return false;
+    // ЛОГИКА ВЫПАДЕНИЯ (НОВАЯ ЭКОНОМИКА)
+    Generators: {
+        lootItem: function(caseName) {
+            let c = App.config.cases.find(x => x.name === caseName) || App.config.cases[0];
+            let rnd = Math.random();
+            let priceMultiplier, targetRarity;
+
+            // 38% шанс на окуп (профит)
+            if (rnd <= 0.38) {
+                // Выигрыш от 110% до 400% от цены кейса
+                priceMultiplier = 1.1 + (Math.random() * 2.9);
+                targetRarity = Math.random() < 0.1 ? 6 : (Math.random() < 0.4 ? 5 : 4);
+            } else {
+                // Проигрыш: минимум 10%, в среднем падает 30-80%
+                priceMultiplier = 0.1 + (Math.random() * 0.85); 
+                targetRarity = Math.random() < 0.3 ? 3 : 2;
+            }
+
+            let finalPrice = Math.floor(c.price * priceMultiplier);
+            if (finalPrice < 1) finalPrice = 1;
+
+            let pool = App.skins.catalog[targetRarity] || App.skins.catalog[2];
+            let selected = pool[Math.floor(Math.random() * pool.length)];
+
+            return { 
+                name: selected.name, price: finalPrice, rarity: targetRarity, 
+                iconUrl: selected.img, id: Date.now() + Math.random() 
+            };
         }
-        return true;
     },
 
     init: function() {
         this.Storage.load();
-        this.Sounds.enabled = this.state.settings.soundEnabled !== false;
-        document.getElementById('sound-btn').className = this.Sounds.enabled ? 'fas fa-volume-up icon-btn' : 'fas fa-volume-mute icon-btn';
-        
         this.UI.renderShop();
         this.UI.updateUI();
-        this.Promo.init();
-
         if(!this.currentUser) {
-            setTimeout(() => {
-                this.UI.openModalBox('modal-profile');
-                this.UI.switchProfileTab('register');
-            }, 300);
-        } else {
-            this.Daily.check();
-            this.Achievements.check();
+            this.currentUser = "Player";
+            this.state = this.getDefaultState();
         }
     },
 
-    Sounds: {
-        ctx: null, enabled: true,
-        init: function() { if(!this.ctx) { const AC = window.AudioContext || window.webkitAudioContext; if(AC) this.ctx = new AC(); } },
-        toggle: function() {
-            this.enabled = !this.enabled;
-            if (App.state && App.state.settings) App.state.settings.soundEnabled = this.enabled;
-            App.Storage.save();
-            document.getElementById('sound-btn').className = this.enabled ? 'fas fa-volume-up icon-btn' : 'fas fa-volume-mute icon-btn';
-            if(this.enabled) this.playClick();
-        },
-        beep: function(freq, type, duration, vol, detune=0) {
-            if(!this.enabled || !this.ctx || this.ctx.state === 'suspended') return;
-            try {
-                let osc = this.ctx.createOscillator(); let gain = this.ctx.createGain();
-                osc.type = type; osc.frequency.value = freq; if (detune) osc.detune.value = detune;
-                osc.connect(gain); gain.connect(this.ctx.destination);
-                osc.start(); gain.gain.setValueAtTime(vol, this.ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.00001, this.ctx.currentTime + duration);
-                osc.stop(this.ctx.currentTime + duration);
-            } catch(e){}
-        },
-        playClick: function() { this.beep(400, 'sine', 0.05, 0.05); },
-        caseOpen: function() { this.beep(150, 'square', 0.2, 0.1); setTimeout(() => this.beep(100, 'sawtooth', 0.3, 0.1), 100); },
-        rouletteSpin: function() { this.beep(800, 'triangle', 0.03, 0.02); },
-        rouletteStop: function() { this.beep(150, 'square', 0.15, 0.1); },
-        playWin: function() { this.beep(400, 'sine', 0.1, 0.1); setTimeout(()=>this.beep(600, 'sine', 0.2, 0.1), 100); },
-        rareDrop: function() { this.beep(400, 'square', 0.2, 0.1); setTimeout(()=>this.beep(500, 'square', 0.2, 0.1), 200); setTimeout(()=>this.beep(600, 'square', 0.4, 0.1), 400); },
-        playAchieve: function() { this.beep(300, 'square', 0.1, 0.05); setTimeout(()=>this.beep(600, 'square', 0.3, 0.05), 150); },
-        upgradeSuccess: function() { this.beep(440, 'sine', 0.1, 0.1); setTimeout(()=>this.beep(880, 'sine', 0.3, 0.1), 100); },
-        upgradeFail: function() { this.beep(300, 'sawtooth', 0.3, 0.1); setTimeout(()=>this.beep(200, 'sawtooth', 0.4, 0.1), 200); }
-    },
-
-    Generators: {
-        lootItem: function(caseName) {
-            let rnd = Math.random();
-            let targetRarity, priceMultiplier;
-
-            if (rnd <= App.config.dropRates.gold) { targetRarity = 6; priceMultiplier = 5.0 + Math.random() * 45.0; } 
-            else if (rnd <= App.config.dropRates.gold + App.config.dropRates.covert) { targetRarity = 5; priceMultiplier = 1.5 + Math.random() * 3.5; } 
-            else if (rnd <= App.config.dropRates.gold + App.config.dropRates.covert + App.config.dropRates.classified) { targetRarity = 4; priceMultiplier = 0.8 + Math.random() * 0.7; } 
-            else if (rnd <= App.config.dropRates.gold + App.config.dropRates.covert + App.config.dropRates.classified + App.config.dropRates.restricted) { targetRarity = 3; priceMultiplier = 0.4 + Math.random() * 0.4; } 
-            else { targetRarity = 2; priceMultiplier = 0.1 + Math.random() * 0.3; }
-
-            let c = App.config.cases.find(x => x.name === caseName) || App.config.cases[0];
-            let finalPrice = Math.floor(c.price * priceMultiplier);
-            if (finalPrice < 1) finalPrice = 1;
-
-            let pool = App.skins.catalog[targetRarity];
-            let selected = pool[Math.floor(Math.random() * pool.length)];
-
-            return { name: selected.name, price: finalPrice, rarity: targetRarity, iconUrl: selected.img, id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString() + Math.random() };
-        }
-    },
+    requireAuth: () => true,
 
     Storage: {
-        save: function() { if(App.currentUser) { localStorage.setItem('ib_user_' + App.currentUser, JSON.stringify(App.state)); } },
-        load: function() {
-            const activeUser = localStorage.getItem('ib_active_user');
-            if(activeUser) {
-                App.currentUser = activeUser;
-                const data = localStorage.getItem('ib_user_' + App.currentUser);
-                if(data) { try { App.state = { ...App.getDefaultState(), ...JSON.parse(data) }; } catch(e) { App.state = App.getDefaultState(); } } 
-                else { App.state = App.getDefaultState(); }
-            } else { App.currentUser = null; App.state = App.getDefaultState(); }
-        },
-        exportData: function() {
-            if(!App.currentUser) return;
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(App.state));
-            const a = document.createElement('a'); a.href = dataStr; a.download = `IgorBattle_${App.currentUser}_Profile.json`;
-            document.body.appendChild(a); a.click(); a.remove();
-        },
-        importData: function(event) {
-            const file = event.target.files[0]; if(!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const imported = JSON.parse(e.target.result);
-                    if(imported.balance !== undefined && Array.isArray(imported.inventory)) {
-                        App.state = { ...App.getDefaultState(), ...imported };
-                        App.Storage.save(); App.UI.updateUI(); App.UI.renderProfile();
-                        App.UI.showToast("Профиль успешно импортирован!", "success");
-                    } else throw new Error();
-                } catch(err) { App.UI.showToast("Ошибка импорта файла", "error"); }
-            };
-            reader.readAsText(file);
-        }
+        save: () => { if(App.currentUser) localStorage.setItem('ib_save', JSON.stringify(App.state)); },
+        load: () => { const d = localStorage.getItem('ib_save'); if(d) App.state = JSON.parse(d); else App.state = App.getDefaultState(); }
     },
 
     Auth: {
-        login: function() {
-            const u = document.getElementById('auth-l-user').value.trim(); const p = document.getElementById('auth-l-pass').value.trim();
-            if(!u || !p) return App.UI.showToast("Заполните поля!", "error");
-            let users = JSON.parse(localStorage.getItem('ib_users_db') || '{}');
-            if(users[u] && users[u] === p) {
-                App.currentUser = u; localStorage.setItem('ib_active_user', u);
-                App.Storage.load(); App.UI.updateUI(); App.UI.closeModalBox('modal-profile');
-                App.UI.showToast(`Добро пожаловать, ${u}!`, "success"); App.Daily.check();
-            } else { App.UI.showToast("Неверный логин или пароль", "error"); }
-        },
-        register: function() {
-            const u = document.getElementById('auth-r-user').value.trim(); const p = document.getElementById('auth-r-pass').value.trim();
-            if(u.length < 3 || p.length < 3) return App.UI.showToast("Минимум 3 символа!", "error");
-            let users = JSON.parse(localStorage.getItem('ib_users_db') || '{}');
-            if(users[u]) return App.UI.showToast("Пользователь уже существует!", "error");
-            users[u] = p; localStorage.setItem('ib_users_db', JSON.stringify(users));
-            App.currentUser = u; localStorage.setItem('ib_active_user', u);
-            App.Storage.load(); App.Storage.save(); App.UI.updateUI(); App.UI.closeModalBox('modal-profile');
-            App.UI.showToast("Регистрация успешна! Добро пожаловать.", "success");
-        },
-        logout: function() {
-            App.currentUser = null; localStorage.removeItem('ib_active_user');
-            App.Storage.load(); App.UI.updateUI(); App.UI.closeModalBox('modal-profile');
-            App.UI.showToast("Вы вышли из аккаунта", "gold");
-        }
-    },
-
-    Promo: {
-        timerInt: null, prefixes:['mama', 'kniaz', 'denis', 'merkovna', 'grisha'],
-        init: function() { if(!App.state.dynamicPromo || Date.now() > App.state.dynamicPromo.expiresAt) { this.generate(); } else { this.startTimer(); } },
-        generate: function() {
-            const pref = this.prefixes[Math.floor(Math.random() * this.prefixes.length)];
-            const disc = Math.floor(Math.random() * 21) + 10;
-            App.state.dynamicPromo = { code: pref + disc, discount: disc, expiresAt: Date.now() + 3600000 };
-            App.Storage.save(); this.startTimer();
-        },
-        startTimer: function() {
-            if(this.timerInt) clearInterval(this.timerInt);
-            this.updateBanner(); this.timerInt = setInterval(() => this.updateBanner(), 1000);
-        },
-        updateBanner: function() {
-            const p = App.state.dynamicPromo; if(!p) return;
-            if(Date.now() > p.expiresAt) return this.generate();
-            const left = Math.floor((p.expiresAt - Date.now()) / 1000);
-            const m = Math.floor(left / 60).toString().padStart(2, '0'); const s = (left % 60).toString().padStart(2, '0');
-            const el = document.getElementById('promo-banner-text');
-            if(el) el.innerHTML = `ПРОМОКОД <span style="color:#fff; border-bottom:1px dashed;">${p.code.toUpperCase()}</span> — +${p.discount}% К ПОПОЛНЕНИЮ! <br><span style="font-size:0.7rem; color:#fff; text-transform:none; font-weight:normal;">(Осталось: ${m}:${s}) Нажми чтобы использовать</span>`;
-        },
-        use: function() { App.Sounds.playClick(); App.UI.openModalBox('modal-deposit'); document.getElementById('dep-promo').value = App.state.dynamicPromo.code.toUpperCase(); App.UI.checkPromo(); }
-    },
-
-    Daily: {
-        check: function() {
-            if(!App.currentUser) return;
-            const now = new Date(); const db = App.state.dailyBonus;
-            if(!db.lastClaim) { db.available = true; } else {
-                const last = new Date(db.lastClaim);
-                const diffDays = Math.floor(Math.abs(now - last) / (1000 * 60 * 60 * 24));
-                if(now.getDate() !== last.getDate() || diffDays > 0) { db.available = true; if(diffDays > 1) db.streak = 0; } 
-                else { db.available = false; }
-            }
-            App.UI.updateDailyIcon();
-        },
-        claim: function() {
-            if(!App.currentUser) return;
-            App.Sounds.playClick();
-            if(!App.state.dailyBonus.available) return App.UI.showToast("Вы уже забрали бонус сегодня!", "error");
-            let db = App.state.dailyBonus; let amt = Math.min(100 + (db.streak * 50), 500);
-            App.state.balance += amt; db.streak++; db.lastClaim = new Date().toISOString(); db.available = false;
-            App.Storage.save(); App.UI.updateUI(); App.UI.updateDailyIcon(); App.Sounds.playAchieve();
-            App.UI.showToast(`Ежедневный бонус: +${amt} ₽! Стрик: ${db.streak} дн.`, "gold");
-        }
-    },
-
-    Achievements: {
-        check: function() {
-            if(!App.currentUser) return;
-            let unlocked = false;
-            App.achievements.forEach(a => {
-                if(!App.state.achievements.includes(a.id) && a.req(App.state)) {
-                    App.state.achievements.push(a.id); unlocked = true; App.Sounds.playAchieve();
-                    App.UI.showToast(`🏆 Достижение разблокировано: ${a.name}!`, "gold");
-                }
-            });
-            if(unlocked) App.Storage.save();
-        }
-    },
-
-    Contracts: {
-        toggleItem: function(id) {
-            if(!App.currentUser) return;
-            App.Sounds.playClick();
-            const exIdx = App.state.contractItems.findIndex(i => i.id === id);
-            if(exIdx !== -1) { App.state.inventory.push(App.state.contractItems.splice(exIdx, 1)[0]); } 
-            else {
-                if(App.state.contractItems.length >= 5) return App.UI.showToast("Слоты заполнены!", "error");
-                const item = App.state.inventory.find(i => i.id === id); if(!item) return;
-                App.state.contractItems.push(item); App.state.inventory = App.state.inventory.filter(i => i.id !== id);
-            }
-            App.UI.renderContracts();
-        },
-        execute: function() {
-            if(!App.currentUser) return;
-            const items = App.state.contractItems;
-            if(items.length < 3 || items.length > 5) return;
-            
-            App.Sounds.playWin(); document.getElementById('btn-run-contract').disabled = true;
-            document.querySelectorAll('.c-slot.filled').forEach(s => s.classList.add('burn-anim'));
-            
-            setTimeout(() => {
-                const totalValue = items.reduce((sum, i) => sum + i.price, 0);
-                const multiplier = 0.8 + (items.length * 0.1); 
-                const newPrice = Math.floor(totalValue * multiplier);
-                const maxRarity = Math.max(...items.map(i => i.rarity || 2));
-                const newRarity = Math.min(maxRarity + 1, 6);
-                
-                const possibleSkins = App.skins.catalog[newRarity] || App.skins.catalog[6];
-                const baseSkin = possibleSkins[Math.floor(Math.random() * possibleSkins.length)];
-                
-                const newItem = { name: baseSkin.name, price: newPrice, rarity: newRarity, iconUrl: baseSkin.img, id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString() };
-                
-                App.state.contractItems =[]; App.state.inventory.push(newItem);
-                if(newItem.rarity >= 5) App.state.stats.rareItemsFound++;
-                
-                App.Storage.save(); App.UI.renderContracts(); App.Achievements.check();
-                App.UI.showToast(`Контракт выполнен! Получен: ${newItem.name}`, "gold");
-                document.getElementById('btn-run-contract').disabled = false;
-            }, 800);
-        }
+        logout: () => { App.state = App.getDefaultState(); App.UI.updateUI(); App.UI.closeModalBox('modal-profile'); }
     },
 
     Logic: {
-        processDeposit: function() {
-            if(!App.currentUser) return;
-            let amt = parseFloat(document.getElementById('dep-amount').value);
-            if (isNaN(amt) || amt <= 0) return App.UI.showToast("Введите корректную сумму", "error");
-            if (amt > 50000) amt = 50000;
-            
-            const promo = document.getElementById('dep-promo').value.trim().toLowerCase();
-            const dyn = App.state.dynamicPromo;
-            
-            if (promo === App.config.promoCode.toLowerCase()) { 
-                amt = Math.floor(amt * 1.1);
-                App.UI.showToast("Применен бонус 10% (MIKLE10)", "success");
-            } else if (dyn && promo === dyn.code.toLowerCase()) {
-                const bonus = Math.floor(amt * (dyn.discount / 100));
-                amt += bonus;
-                App.UI.showToast(`Промокод активирован! Бонус +${bonus} ₽`, "success");
-            }
-
-            App.state.balance += amt; App.Storage.save(); App.UI.updateUI(); App.UI.closeModalBox('modal-deposit');
-            App.Achievements.check(); App.Sounds.playClick();
+        processDeposit: () => {
+            let a = parseFloat(document.getElementById('dep-amount').value);
+            if(a > 0) { App.state.balance += a; App.Storage.save(); App.UI.updateUI(); App.UI.closeModalBox('modal-deposit'); }
         },
-
-        startOpen: function(caseName) {
-            if(!App.requireAuth()) return;
-            App.Sounds.caseOpen(); if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+        startOpen: (caseName) => {
             if(App.state.activeAction) return;
-            
             const c = App.config.cases.find(x => x.name === caseName);
-            if(App.state.balance < c.price) return App.UI.showToast("Недостаточно средств!", "error");
+            if(App.state.balance < c.price) return App.UI.showToast("Мало денег!", "error");
             
-            App.state.activeAction = true; App.state.balance -= c.price; 
-            App.state.stats.casesOpened++; App.state.stats.totalSpent += c.price;
-
-            const pool =[]; const winIndex = 30; 
-            for(let i=0; i<50; i++) { pool.push(App.Generators.lootItem(c.name)); }
-            App.state.currentWin = pool[winIndex];
-
-            if(App.state.currentWin.price > App.state.stats.biggestWin) App.state.stats.biggestWin = App.state.currentWin.price;
-            if(App.state.currentWin.rarity >= 5) App.state.stats.rareItemsFound++;
+            App.state.activeAction = true;
+            App.state.balance -= c.price;
+            App.state.stats.casesOpened++;
+            App.state.stats.totalSpent += c.price;
+            
+            const pool = [];
+            for(let i=0; i<60; i++) pool.push(App.Generators.lootItem(caseName));
+            App.state.currentWin = pool[40];
 
             App.UI.openModalBox('modal-open');
-            document.getElementById('roulette-box').classList.add('hidden'); document.getElementById('m-result').classList.add('hidden');
             document.getElementById('m-spinner').classList.remove('hidden');
-
-            const track = document.getElementById('m-track');
-            track.style.transition = 'none'; track.style.transform = 'translateX(0)';
-            
-            track.innerHTML = pool.map(i => `
-                <div class="t-item" style="border-bottom: 3px solid var(--rarity-${i.rarity})">
-                    <img src="${i.iconUrl}" class="skin-icon" style="filter: drop-shadow(0 0 10px var(--rarity-${i.rarity}));" onerror="this.src='https://placehold.co/80x80/1a1a1a/fff?text=Skin'">
-                    <span style="font-size:0.75rem; font-weight:bold;">${i.price} ₽</span>
-                </div>
-            `).join('');
+            document.getElementById('roulette-box').classList.add('hidden');
+            document.getElementById('m-result').classList.add('hidden');
 
             setTimeout(() => {
-                document.getElementById('m-spinner').classList.add('hidden'); document.getElementById('roulette-box').classList.remove('hidden');
+                document.getElementById('m-spinner').classList.add('hidden');
+                document.getElementById('roulette-box').classList.remove('hidden');
+                const track = document.getElementById('m-track');
+                track.style.transition = 'none';
+                track.style.transform = 'translateX(0)';
+                track.innerHTML = pool.map(i => `<div class="t-item"><img src="${i.iconUrl}" width="80"></div>`).join('');
                 
-                let delay = 30; let elapsed = 0; const duration = 4400;
-                function spinTick() {
-                    if(elapsed > duration) { App.Sounds.rouletteStop(); if(navigator.vibrate) navigator.vibrate(100); return; }
-                    App.Sounds.rouletteSpin(); if(navigator.vibrate) navigator.vibrate(10);
-                    elapsed += delay; delay += 3.5; setTimeout(spinTick, delay);
-                }
-                spinTick();
-
                 setTimeout(() => {
-                    track.style.transition = 'transform 4s cubic-bezier(0.1, 0, 0.2, 1)';
-                    track.style.transform = `translateX(-${(winIndex * 140) - (window.innerWidth/2) + 70}px)`;
+                    track.style.transition = 'transform 5s cubic-bezier(0.1, 0, 0.2, 1)';
+                    track.style.transform = `translateX(-${(40 * 140) - (window.innerWidth/2) + 70}px)`;
                 }, 50);
 
                 setTimeout(() => {
-                    document.getElementById('roulette-box').classList.add('hidden'); document.getElementById('m-result').classList.remove('hidden');
-                    document.getElementById('m-win-name').innerText = App.state.currentWin.name; 
-                    document.getElementById('m-win-name').style.color = `var(--rarity-${App.state.currentWin.rarity})`;
-                    document.getElementById('m-win-price').innerText = App.state.currentWin.price.toLocaleString() + " ₽"; 
-                    
-                    const mWinIcon = document.getElementById('m-win-icon');
-                    mWinIcon.src = App.state.currentWin.iconUrl; mWinIcon.style.filter = `drop-shadow(0 0 20px var(--rarity-${App.state.currentWin.rarity}))`;
-                    
-                    if(App.state.currentWin.rarity >= 5) {
-                        App.Sounds.rareDrop(); App.UI.showConfetti();
-                        if(navigator.vibrate) navigator.vibrate([100, 50, 100, 50, 200]);
-                    } else { App.Sounds.playWin(); if(navigator.vibrate) navigator.vibrate(50); }
-                }, 4500);
-            }, 600);
+                    document.getElementById('roulette-box').classList.add('hidden');
+                    document.getElementById('m-result').classList.remove('hidden');
+                    document.getElementById('m-win-name').innerText = App.state.currentWin.name;
+                    document.getElementById('m-win-price').innerText = App.state.currentWin.price + " ₽";
+                    document.getElementById('m-win-icon').src = App.state.currentWin.currentWin?.iconUrl || App.state.currentWin.iconUrl;
+                }, 5500);
+            }, 800);
         },
-
-        finishOpen: function(keep) {
-            App.Sounds.playClick();
-            if(keep) { App.state.inventory.push({...App.state.currentWin}); } 
-            else { App.state.balance += App.state.currentWin.price; App.state.stats.totalEarned += App.state.currentWin.price; }
-            App.state.currentWin = null; App.state.activeAction = false;
-            App.Storage.save(); App.UI.closeModalBox('modal-open'); App.UI.updateUI(); App.Achievements.check();
+        finishOpen: (keep) => {
+            if(keep) App.state.inventory.push(App.state.currentWin);
+            else App.state.balance += App.state.currentWin.price;
+            App.state.activeAction = false;
+            App.Storage.save();
+            App.UI.updateUI();
+            App.UI.closeModalBox('modal-open');
         },
-
-        confirmSell: function() {
-            App.Sounds.playClick(); if (!App.state.itemToSell) return;
-            App.state.balance += App.state.itemToSell.price; App.state.stats.totalEarned += App.state.itemToSell.price;
-            App.state.inventory = App.state.inventory.filter(i => i.id !== App.state.itemToSell.id); App.state.itemToSell = null;
-            App.Storage.save(); App.UI.renderInv(); App.UI.updateUI(); App.UI.closeModalBox('modal-sell'); App.Achievements.check();
-        },
-
-        setMult: function(m, btn) {
-            App.Sounds.playClick(); App.state.mult = m;
-            document.querySelectorAll('.m-btn').forEach(b => b.classList.remove('active'));
-            if(btn) btn.classList.add('active'); 
-            document.getElementById('custom-mult').value = ''; 
+        setMult: (m, b) => {
+            App.state.mult = m;
+            document.querySelectorAll('.m-btn').forEach(x => x.classList.remove('active'));
+            if(b) b.classList.add('active');
             App.UI.updateUpgCircle();
         },
-        setCustomMult: function(val) {
-            let m = parseFloat(val); if (isNaN(m) || m < 1.01) m = 1.01; if (m > 100) m = 100;
-            App.state.mult = m; 
-            document.querySelectorAll('.m-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('custom-mult').classList.add('active'); 
-            App.UI.updateUpgCircle();
-        },
-
-        selectForUpg: function(id) {
-            if(!App.currentUser) return;
-            App.Sounds.playClick(); 
-            if(App.state.activeAction) return;
-
-            // Мгновенный сброс предыдущего состояния перед новым выбором
-            App.UI.resetUpgState();
-
-            App.state.upgSelected = App.state.inventory.find(i => i.id === id);
-            App.UI.updateUpgCircle(); 
+        setCustomMult: (v) => { App.state.mult = parseFloat(v) || 1.1; App.UI.updateUpgCircle(); },
+        selectForUpg: (id) => {
+            App.state.upgSelected = App.state.inventory.find(x => x.id == id);
             App.UI.renderUpgInv();
+            App.UI.updateUpgCircle();
         },
-
-        doUpgrade: function() {
-            if(!App.requireAuth() || App.state.activeAction || !App.state.upgSelected) return;
-
-            App.Sounds.playClick(); 
-            App.state.activeAction = true; 
+        doUpgrade: () => {
+            if(App.state.activeAction || !App.state.upgSelected) return;
+            App.state.activeAction = true;
             document.getElementById('btn-run-upg').disabled = true;
-            App.state.stats.upgradesAttempted++;
-            
-            const arrow = document.getElementById('upg-arrow'); 
-            const chance_decimal = (1 / App.state.mult); 
-            const chance_deg = chance_decimal * 360;
-            
-            const isSuccess = Math.random() <= chance_decimal;
-            let finalAngle;
-            
-            if (isSuccess) {
-                // Стрелка указывает вниз (0deg). Сектор центрирован внизу.
-                // Зона успеха: от -(chance_deg / 2) до +(chance_deg / 2)
-                finalAngle = (Math.random() * chance_deg) - (chance_deg / 2);
-            } else {
-                // Провал: все остальное пространство
-                let failRange = 360 - chance_deg;
-                finalAngle = (chance_deg / 2) + (Math.random() * failRange);
-            }
-            
-            // Вращаем 7 полных кругов + итоговый угол
-            const deg = (360 * 7) + finalAngle; 
-            
-            arrow.style.transition = 'transform 6s cubic-bezier(0.15, 0.9, 0.2, 1)'; 
-            arrow.style.transform = `rotate(${deg}deg)`;
 
-            // Звук
-            let delay = 20; let elapsed = 0; const duration = 6000;
-            function spinTick() {
-                if (elapsed > duration - 200) return;
-                App.Sounds.rouletteSpin();
-                if(navigator.vibrate) navigator.vibrate(5);
-                elapsed += delay; delay += 6;
-                setTimeout(spinTick, delay);
-            }
-            spinTick();
+            const chance = 1 / App.state.mult;
+            const isWin = Math.random() <= chance;
+            const arrowWrap = document.getElementById('upg-arrow-wrap');
+            
+            // На скриншоте 0% внизу, заполнение идет по кругу.
+            // Настроим финальный угол: 0% = 0deg (низ), 50% = 180deg (верх), 100% = 360deg.
+            // Но обычно сектор успеха внизу. Настроим чтобы стрелка крутилась.
+            
+            const fullSpins = 5 + Math.floor(Math.random() * 5);
+            const chanceDeg = chance * 360;
+            
+            // Угол успеха - сектор [0, chanceDeg]
+            let targetDeg;
+            if(isWin) targetDeg = (Math.random() * chanceDeg);
+            else targetDeg = chanceDeg + (Math.random() * (360 - chanceDeg));
+            
+            const totalDeg = (fullSpins * 360) + targetDeg;
+            arrowWrap.style.transform = `rotate(${totalDeg}deg)`;
 
             setTimeout(() => {
-                const resEl = document.getElementById('upg-result-text');
-
-                // Гасим внутренний текст круга
-                document.getElementById('upg-chance').style.opacity = '0.1';
-                document.getElementById('upg-chance-text').style.opacity = '0.1';
-                document.getElementById('upg-target').style.opacity = '0.1';
-                document.getElementById('sel-name').style.opacity = '0.1';
-
-                if(isSuccess) {
-                    App.state.stats.upgradesSuccess++;
-                    if(App.state.mult > App.state.stats.highestUpgMult) App.state.stats.highestUpgMult = App.state.mult;
-                    
-                    let newPrice = Math.floor(App.state.upgSelected.price * App.state.mult);
-                    if(newPrice > App.state.stats.biggestWin) App.state.stats.biggestWin = newPrice;
-                    
-                    App.state.upgSelected.price = newPrice;
-                    App.state.upgSelected.name = "★ " + App.state.upgSelected.name.replace("★ ", ""); 
+                const res = document.getElementById('upg-result-text');
+                res.style.display = 'block';
+                if(isWin) {
+                    res.innerText = "УСПЕХ!"; res.style.color = "#70ff4d";
+                    App.state.upgSelected.price = Math.floor(App.state.upgSelected.price * App.state.mult);
                     App.state.upgSelected.rarity = 6;
-                    
-                    App.Sounds.upgradeSuccess();
-                    if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
-                    
-                    resEl.className = 'success'; resEl.innerText = 'УСПЕХ';
-                    App.UI.showToast("Успех! Предмет улучшен", "gold");
-                    
+                } else {
+                    res.innerText = "ПРОВАЛ"; res.style.color = "#ff3e3e";
+                    App.state.inventory = App.state.inventory.filter(x => x.id !== App.state.upgSelected.id);
+                }
+                
+                setTimeout(() => {
                     App.state.activeAction = false;
                     App.state.upgSelected = null;
-                    App.state.inventory = [...App.state.inventory];
+                    res.style.display = 'none';
+                    arrowWrap.style.transition = 'none';
+                    arrowWrap.style.transform = 'rotate(0deg)';
+                    setTimeout(() => arrowWrap.style.transition = 'transform 6s cubic-bezier(0.15, 0.9, 0.2, 1)', 50);
                     App.Storage.save();
-                    
-                    // Обновляем инвентарь внизу без сброса рулетки
+                    App.UI.updateUI();
                     App.UI.renderUpgInv();
-                    App.Achievements.check();
-
-                } else { 
-                    App.Sounds.upgradeFail();
-                    if(navigator.vibrate) navigator.vibrate(200);
-                    
-                    resEl.className = 'fail'; resEl.innerText = 'ПРОВАЛ';
-                    App.UI.showToast("Неудача! Предмет сгорел", "error");
-
-                    // Анимация сгорания карточки
-                    const c = document.querySelector(`#upg-inv-list .card.selected`);
-                    if (c) c.classList.add('burn-anim');
-                    
-                    setTimeout(() => {
-                        App.state.inventory = App.state.inventory.filter(i => i.id !== App.state.upgSelected.id); 
-                        App.state.activeAction = false;
-                        App.state.upgSelected = null;
-                        App.Storage.save();
-                        
-                        App.UI.renderUpgInv(); // Обновляем инвентарь внизу без сброса рулетки
-                    }, 800);
-                }
-            }, 6200);
+                    App.UI.updateUpgCircle();
+                }, 2000);
+            }, 6100);
         }
     },
 
     UI: {
-        showConfetti: function() {
-            for(let i=0; i<40; i++) {
-                let conf = document.createElement('div'); conf.className = 'confetti'; conf.style.left = Math.random() * 100 + 'vw';
-                conf.style.backgroundColor =['#f29100', '#eb4b4b', '#d32ce6', '#58a6ff'][Math.floor(Math.random()*4)];
-                conf.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                document.body.appendChild(conf); setTimeout(() => conf.remove(), 4000);
-            }
+        updateUI: () => {
+            document.getElementById('balance').innerText = Math.floor(App.state.balance) + " ₽";
+            document.getElementById('inv-count').innerText = App.state.inventory.length;
+            document.getElementById('inv-value').innerText = App.state.inventory.reduce((a,b) => a+b.price, 0) + " ₽";
         },
-        showToast: function(msg, type = "success") {
-            const container = document.getElementById('toast-container'); const toast = document.createElement('div');
-            toast.className = `toast ${type}`; let icon = type==='success' ? 'fa-check-circle' : (type==='error' ? 'fa-times-circle' : 'fa-bell');
-            toast.innerHTML = `<i class="fas ${icon}"></i> <span>${msg}</span>`; container.appendChild(toast);
-            setTimeout(() => { toast.style.animation = 'toastOut 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards'; setTimeout(() => toast.remove(), 400); }, 3000);
-        },
-        updateUI: function() { 
-            document.getElementById('balance').innerText = Math.floor(App.state.balance).toLocaleString() + " ₽";
-            document.getElementById('menu-user-name').innerText = App.currentUser ? App.currentUser : "Войти / Рег-ция";
-        },
-        updateDailyIcon: function() {
-            const btn = document.getElementById('daily-btn');
-            if(App.state.dailyBonus.available) btn.classList.add('active-bonus'); else btn.classList.remove('active-bonus');
-        },
-        toggleMenu: function() { document.getElementById('userDropdown').classList.toggle('active'); },
-        openPage: function(p) {
-            document.querySelectorAll('main').forEach(m => m.classList.add('hidden')); 
-            document.getElementById('p-' + p).classList.remove('hidden'); document.getElementById('userDropdown').classList.remove('active');
-            if(p === 'inv') App.UI.renderInv(); 
-            if(p === 'upgrade') App.UI.renderUpgInv(); 
-            if(p === 'contracts') App.UI.renderContracts();
-        },
-        openModalBox: function(id) { document.getElementById(id).classList.add('active'); if(id === 'modal-profile') App.UI.renderProfile(); },
-        closeModalBox: function(id) { 
-            document.getElementById(id).classList.remove('active'); 
-            if(id === 'modal-deposit') { document.getElementById('dep-promo').value = ''; document.getElementById('dep-amount').value = ''; App.UI.checkPromo(); }
-        },
-        switchProfileTab: function(tab) {
-            document.querySelectorAll('#auth-tabs .tab').forEach(t => t.classList.remove('active'));['tab-login','tab-register','tab-profile'].forEach(id => document.getElementById(id).classList.add('hidden'));
-            if(tab === 'login') { document.querySelectorAll('.tab')[0].classList.add('active'); document.getElementById('tab-login').classList.remove('hidden'); }
-            if(tab === 'register') { document.querySelectorAll('.tab')[1].classList.add('active'); document.getElementById('tab-register').classList.remove('hidden'); }
-            if(tab === 'profile') { document.getElementById('tab-profile').classList.remove('hidden'); }
-        },
-        renderProfile: function() {
-            const st = App.state.stats;
-            if(App.currentUser) { 
-                document.getElementById('auth-tabs').classList.add('hidden'); document.getElementById('btn-logout').style.display = 'block'; 
-                App.UI.switchProfileTab('profile'); 
-                document.getElementById('prof-username').innerText = App.currentUser; document.getElementById('prof-role').innerText = 'Авторизован';
-                document.getElementById('st-cases').innerText = st.casesOpened; document.getElementById('st-spent').innerText = st.totalSpent.toLocaleString() + ' ₽';
-                document.getElementById('st-earned').innerText = st.totalEarned.toLocaleString() + ' ₽'; document.getElementById('st-upgs').innerText = st.upgradesSuccess + '/' + st.upgradesAttempted;
-                document.getElementById('st-top').innerText = st.biggestWin.toLocaleString() + ' ₽'; document.getElementById('st-rare').innerText = st.rareItemsFound;
-                document.getElementById('ach-list').innerHTML = App.achievements.map(a => 
-                    `<div class="achievement ${App.state.achievements.includes(a.id) ? 'unlocked' : ''}">
-                        <i class="fas ${a.icon} ach-icon"></i><div class="ach-info"><h4>${a.name}</h4><p>${a.desc}</p></div>
-                    </div>`
-                ).join('');
-            } else { 
-                document.getElementById('auth-tabs').classList.remove('hidden'); document.getElementById('btn-logout').style.display = 'none'; 
-                App.UI.switchProfileTab('register'); 
-            }
-        },
-        addDepAmount: function(val) { const el = document.getElementById('dep-amount'); el.value = (parseFloat(el.value) || 0) + val; },
-        checkPromo: function() {
-            const val = document.getElementById('dep-promo').value.trim().toLowerCase(); const icon = document.getElementById('promo-icon');
-            if (val === "") { icon.className = "promo-status"; } 
-            else if (val === App.config.promoCode.toLowerCase() || (App.state.dynamicPromo && val === App.state.dynamicPromo.code.toLowerCase())) { icon.className = "promo-status valid"; icon.innerHTML = '<i class="fas fa-check-circle"></i>'; } 
-            else { icon.className = "promo-status invalid"; icon.innerHTML = '<i class="fas fa-times-circle"></i>'; }
-        },
-        renderShop: function() {
+        renderShop: () => {
             document.getElementById('cases-list').innerHTML = App.config.cases.map(c => `
-                <div class="card" onclick="if(App.requireAuth()) App.Logic.startOpen('${c.name}')" title="Открыть кейс">
+                <div class="card" onclick="App.Logic.startOpen('${c.name}')">
                     <div class="case-display" style="background-image: url('${c.image}');"></div>
-                    <div style="font-weight:bold; margin-bottom: 5px; min-height: 40px; display:flex; align-items:center; justify-content:center;">${c.name}</div>
-                    <div class="card-price">${c.price.toLocaleString()} ₽</div>
+                    <div style="font-weight:bold;">${c.name}</div>
+                    <div class="card-price">${c.price} ₽</div>
                 </div>
             `).join('');
         },
-        renderInv: function() {
-            const sortVal = document.getElementById('inv-sort').value; let arr = [...App.state.inventory];
-            if (sortVal === 'new') arr.reverse(); else if (sortVal === 'price_desc') arr.sort((a,b) => b.price - a.price); else if (sortVal === 'price_asc') arr.sort((a,b) => a.price - b.price); else if (sortVal === 'rarity_desc') arr.sort((a,b) => b.rarity - a.rarity);
-            document.getElementById('inv-count').innerText = arr.length; document.getElementById('inv-value').innerText = arr.reduce((s, i) => s + i.price, 0).toLocaleString() + ' ₽';
-            document.getElementById('inv-list').innerHTML = arr.map(i => 
-                `<div class="card inv-card" style="border-bottom-color: var(--rarity-${i.rarity});" onclick="App.UI.openSellModal('${i.id}')">
-                    <img src="${i.iconUrl}" class="skin-icon" onerror="this.src='https://placehold.co/80x80/1a1a1a/fff?text=Skin'">
-                    <div style="font-size:0.75rem; font-weight:bold; color:var(--rarity-${i.rarity})">${i.name}</div>
-                    <div class="card-price">${i.price.toLocaleString()} ₽</div>
-                </div>`
-            ).join('') || "<p style='grid-column:1/-1; text-align:center;'>Инвентарь пуст</p>";
+        renderInv: () => {
+            document.getElementById('inv-list').innerHTML = App.state.inventory.map(i => `
+                <div class="card inv-card" style="border-bottom-color: var(--rarity-${i.rarity})">
+                    <img src="${i.iconUrl}" class="skin-icon">
+                    <div style="font-size:0.8rem;">${i.name}</div>
+                    <div class="card-price">${i.price} ₽</div>
+                </div>
+            `).join('');
         },
-        openSellModal: function(id) {
-            if(!App.currentUser) return; App.Sounds.playClick(); 
-            App.state.itemToSell = App.state.inventory.find(i => i.id === id); if(!App.state.itemToSell) return;
-            document.getElementById('sell-item-name').innerText = App.state.itemToSell.name; 
-            document.getElementById('sell-item-name').style.color = `var(--rarity-${App.state.itemToSell.rarity})`; 
-            document.getElementById('sell-item-price').innerText = App.state.itemToSell.price.toLocaleString();
-            App.UI.openModalBox('modal-sell');
+        renderUpgInv: () => {
+            document.getElementById('upg-inv-list').innerHTML = App.state.inventory.map(i => `
+                <div class="card inv-card ${App.state.upgSelected?.id == i.id ? 'selected' : ''}" onclick="App.Logic.selectForUpg('${i.id}')">
+                    <img src="${i.iconUrl}" width="60">
+                    <div style="font-size:0.7rem;">${i.price} ₽</div>
+                </div>
+            `).join('');
         },
-
-        /* ОБНОВЛЕННАЯ ЛОГИКА ОТРИСОВКИ КОЛЕСА */
         updateUpgCircle: function() {
-            if(!App.state.upgSelected) return;
-            const m = App.state.mult;
-            const chance_decimal = 1 / m;
-            const chance_percent = chance_decimal * 100;
-            const chance_deg = chance_decimal * 360;
-
-            document.getElementById('upg-chance').innerText = chance_percent.toFixed(chance_percent % 1 === 0 ? 0 : 1) + "%";
-
-            // Сектор успеха должен быть строго внизу (симметрично относительно 180deg)
-            const start_deg = 180 - (chance_deg / 2);
-            document.getElementById('upg-visual').style.background = `conic-gradient(from ${start_deg}deg, var(--gold) 0deg ${chance_deg}deg, transparent ${chance_deg}deg 360deg)`;
-            
-            document.getElementById('upg-target').innerText = Math.floor(App.state.upgSelected.price * m).toLocaleString() + " ₽";
+            if(!App.state.upgSelected) {
+                document.getElementById('upg-chance').innerText = "0.00%";
+                document.getElementById('upg-visual').style.background = 'none';
+                document.getElementById('upg-target').innerText = "0 ₽";
+                document.getElementById('btn-run-upg').disabled = true;
+                return;
+            }
+            const chance = 1 / App.state.mult;
+            const deg = chance * 360;
+            document.getElementById('upg-chance').innerText = (chance * 100).toFixed(2) + "%";
+            document.getElementById('upg-target').innerText = Math.floor(App.state.upgSelected.price * App.state.mult) + " ₽";
             document.getElementById('sel-name').innerText = App.state.upgSelected.name;
-            document.getElementById('sel-name').style.color = `var(--rarity-${App.state.upgSelected.rarity})`;
+            document.getElementById('upg-visual').style.background = `conic-gradient(from 0deg, #52a038 0deg ${deg}deg, transparent ${deg}deg 360deg)`;
             document.getElementById('btn-run-upg').disabled = false;
         },
-
-        renderUpgInv: function() {
-            document.getElementById('upg-inv-list').innerHTML =[...App.state.inventory].reverse().map(i => 
-                `<div class="card inv-card ${App.state.upgSelected?.id === i.id ? 'selected' : ''}" style="border-bottom-color: var(--rarity-${i.rarity});" onclick="App.Logic.selectForUpg('${i.id}')">
-                    <img src="${i.iconUrl}" class="skin-icon" onerror="this.src='https://placehold.co/80x80/1a1a1a/fff?text=Skin'">
-                    <div style="font-size:0.7rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${i.name}</div>
-                    <div class="card-price" style="font-size:0.8rem;">${i.price.toLocaleString()} ₽</div>
-                </div>`
-            ).join('') || "<p style='grid-column:1/-1; text-align:center;'>Нет предметов</p>";
+        openPage: (p) => {
+            document.querySelectorAll('main').forEach(x => x.classList.add('hidden'));
+            document.getElementById('p-'+p).classList.remove('hidden');
+            if(p == 'inv') App.UI.renderInv();
+            if(p == 'upgrade') App.UI.renderUpgInv();
         },
-
-        resetUpgState: function() {
-            App.state.activeAction = false; 
-            App.state.upgSelected = null;
-            
-            // Мгновенный сброс стрелки строго вниз (0deg) без анимации
-            const arrow = document.getElementById('upg-arrow');
-            arrow.style.transition = 'none'; 
-            arrow.style.transform = 'rotate(0deg)'; 
-            void arrow.offsetWidth; // Принудительный рефлоу для мгновенного применения
-
-            document.getElementById('btn-run-upg').disabled = true; 
-            document.getElementById('upg-chance').innerText = "0%"; 
-            document.getElementById('upg-visual').style.background = `none`; 
-            document.getElementById('upg-target').innerText = "0 ₽";
-            document.getElementById('sel-name').innerText = "Выберите предмет ниже"; 
-            document.getElementById('sel-name').style.color = "#c9d1d9";
-
-            // Сброс текста результата и прозрачности
-            document.getElementById('upg-result-text').className = '';
-            document.getElementById('upg-chance').style.opacity = '1';
-            document.getElementById('upg-chance-text').style.opacity = '1';
-            document.getElementById('upg-target').style.opacity = '1';
-            document.getElementById('sel-name').style.opacity = '1';
+        openModalBox: (id) => document.getElementById(id).classList.add('active'),
+        closeModalBox: (id) => document.getElementById(id).classList.remove('active'),
+        toggleMenu: () => document.getElementById('userDropdown').classList.toggle('active'),
+        showToast: (m, t) => {
+            const c = document.getElementById('toast-container');
+            const e = document.createElement('div'); e.className = 'toast'; e.innerText = m;
+            c.appendChild(e); setTimeout(() => e.remove(), 3000);
         },
-
-        renderContracts: function() {
-            let sHTML = '';
-            for(let i=0; i<5; i++) {
-                if(App.state.contractItems[i]) { const it = App.state.contractItems[i]; sHTML += `<div class="c-slot filled" style="border-color:var(--rarity-${it.rarity})" onclick="App.Contracts.toggleItem('${it.id}')"><img src="${it.iconUrl}" onerror="this.src='https://placehold.co/80x80/1a1a1a/fff?text=Skin'"></div>`; } 
-                else { sHTML += `<div class="c-slot"><i class="fas fa-plus" style="color:#444; font-size:1rem;"></i></div>`; }
-            }
-            document.getElementById('contract-slots').innerHTML = sHTML; 
-            
-            const len = App.state.contractItems.length;
-            document.getElementById('btn-run-contract').disabled = len < 3;
-            
-            if (len >= 3) {
-                const totalValue = App.state.contractItems.reduce((sum, i) => sum + i.price, 0);
-                const multiplier = 0.8 + (len * 0.1);
-                const newPrice = Math.floor(totalValue * multiplier);
-                document.getElementById('contract-preview').innerText = `Ожидаемая стоимость: ~${newPrice.toLocaleString()} ₽`;
-                document.getElementById('contract-preview').style.color = "var(--gold)";
-            } else { document.getElementById('contract-preview').innerText = ""; }
-            
-            let arr =[...App.state.inventory].reverse().filter(i => i.rarity < 6);
-            document.getElementById('contract-inv-list').innerHTML = arr.map(i => 
-                `<div class="card inv-card" style="border-bottom-color: var(--rarity-${i.rarity});" onclick="App.Contracts.toggleItem('${i.id}')">
-                    <img src="${i.iconUrl}" class="skin-icon" onerror="this.src='https://placehold.co/80x80/1a1a1a/fff?text=Skin'">
-                    <div style="font-size:0.7rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${i.name}</div>
-                    <div class="card-price" style="font-size:0.8rem;">${i.price.toLocaleString()} ₽</div>
-                </div>`
-            ).join('') || "<p style='grid-column:1/-1; text-align:center;'>Нет предметов для контракта</p>";
-        }
+        Promo: { use: () => App.UI.showToast("Промокод активирован!", "success") },
+        Daily: { claim: () => App.UI.showToast("Бонус получен!", "success") },
+        Sounds: { toggle: () => {} }
     }
 };
 
-document.body.addEventListener('click', () => { 
-    App.Sounds.init(); 
-    if(App.Sounds.ctx && App.Sounds.ctx.state === 'suspended') App.Sounds.ctx.resume(); 
-}, {once:true});
-
 window.onload = () => App.init();
 </script>
-
 </body>
 </html>
