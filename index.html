@@ -62,6 +62,12 @@
         .card:active { transform: scale(0.95); }
         .card-price { color: var(--gold); font-weight: bold; margin-top: 5px; }
 
+        /* CASE DETAIL PAGE */
+        .case-detail-wrap { max-width: 1000px; margin: 0 auto; text-align: center; padding-top: 20px; }
+        .case-title-big { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 2px; color: var(--gold); }
+        .case-img-big { width: 300px; height: 300px; object-fit: contain; margin-bottom: 30px; filter: drop-shadow(0 0 30px rgba(242, 145, 0, 0.2)); background: #1c2128; border-radius: 20px; padding: 20px;}
+        .case-info-line { margin-bottom: 40px; border-top: 1px solid #333; padding-top: 20px; color: #8b949e; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
+
         .case-display {
             position: relative; width: 120px; height: 120px; margin: 0 auto 15px;
             border-radius: 12px; background-color: #21262d; border: 2px solid #3a4050;
@@ -93,71 +99,69 @@
         .promo-status.valid { display: block; color: var(--green); }
         .promo-status.invalid { display: block; color: var(--red); }
 
-        /* ИДЕАЛЬНОЕ КОЛЕСО АПГРЕЙДА (КАК НА СКРИНЕ) */
+        /* UPGRADE WHEEL (CASE-BATTLE STYLE) */
         .upgrade-container { text-align: center; padding: 10px; max-width: 800px; margin: 0 auto;}
         
         .circle-box { 
             position: relative; 
-            width: 320px; 
-            height: 320px; 
-            margin: 0 auto 20px; 
+            width: 340px; height: 340px; 
+            margin: 40px auto; 
             background: #11141a; 
             border-radius: 50%; 
-            border: 6px solid #2a313c; 
-            overflow: hidden; 
+            border: 10px solid #2a313c; 
             box-shadow: 0 0 40px rgba(0,0,0,0.8); 
         }
+
+        /* Метки процентов вокруг */
+        .circle-label { position: absolute; font-weight: 900; color: #4a515e; font-size: 0.9rem; pointer-events: none; }
+        .label-100 { top: -30px; left: 50%; transform: translateX(-50%); color: var(--green); }
+        .label-50-l { left: -40px; top: 50%; transform: translateY(-50%); }
+        .label-50-r { right: -40px; top: 50%; transform: translateY(-50%); }
+        .label-0 { bottom: -35px; left: 50%; transform: translateX(-50%); color: var(--red); }
         
         .visual-circle { 
-            position: absolute; 
-            inset: 0; 
+            position: absolute; inset: 0; 
             border-radius: 50%; 
             transition: background 0.3s;
+            filter: blur(1px);
         }
         
         .circle-inner { 
-            position: absolute; 
-            inset: 18px; 
+            position: absolute; inset: 30px; 
             background: #0d1117; 
             border-radius: 50%; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
             z-index: 15; 
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.8); 
-            border: 2px solid #2a313c; 
-        }
-        
-        /* Тонкая игла, начинающаяся из центра */
-        .arrow { 
-            position: absolute; 
-            top: 50%; 
-            left: calc(50% - 2px); /* Центровка 4px толщины */
-            width: 4px; 
-            height: 145px; /* Длина стрелки до края */
-            background: var(--red);
-            transform-origin: top center; /* Точка вращения ровно в центре круга */
-            z-index: 30; 
-            border-radius: 4px; 
-            box-shadow: 0 0 15px var(--red);
-            transform: rotate(0deg); /* 0 градусов = указывает строго вниз! */
+            border: 3px solid #2a313c; 
+            box-shadow: inset 0 0 30px #000;
         }
 
-        #upg-result-text {
-            display: none;
+        /* Стрелка-шеврон из скриншота */
+        .chevron-arrow-wrap {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2.5rem;
-            font-weight: 900;
-            z-index: 40;
-            text-shadow: 0 0 20px currentColor, 0 0 5px #000;
-            pointer-events: none;
+            inset: 0;
+            z-index: 30;
+            transition: transform 6s cubic-bezier(0.1, 0, 0.1, 1);
+            transform: rotate(0deg);
         }
-        #upg-result-text.success { color: var(--gold); display: block; animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        #upg-result-text.fail { color: var(--red); display: block; animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        .chevron-arrow {
+            position: absolute;
+            bottom: -15px; /* Указывает на 0% внизу */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .chevron-part {
+            width: 24px; height: 10px;
+            background: #70ff4d; /* Ярко-зеленый неон */
+            clip-path: polygon(50% 0%, 100% 100%, 50% 70%, 0% 100%);
+            margin-bottom: -4px;
+            filter: drop-shadow(0 0 8px #70ff4d);
+            box-shadow: 0 0 15px #70ff4d;
+        }
+        .chevron-part:nth-child(2) { opacity: 0.5; }
 
         .mult-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 15px 0; }
         .m-btn { background: #21262d; border: 1px solid #30363d; color: white; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; transition: 0.2s; }
@@ -253,6 +257,18 @@
     <div class="grid" id="cases-list"></div>
 </main>
 
+<main id="p-case-detail" class="hidden">
+    <div class="case-detail-wrap">
+        <h1 class="case-title-big" id="det-title">Название</h1>
+        <img id="det-img" src="" class="case-img-big" onerror="this.src='https://placehold.co/300x300/1a1a1a/fff?text=?'">
+        <div>
+            <button class="btn-main" id="btn-open-case" style="background:var(--gold); color:#000; font-size:1.2rem; max-width:300px;">Открыть за 0 ₽</button>
+        </div>
+        <div class="case-info-line">Содержимое кейса</div>
+        <div class="grid" id="case-content-grid"></div>
+    </div>
+</main>
+
 <main id="p-inv" class="hidden">
     <div class="inv-header">
         <div class="inv-stats">
@@ -274,26 +290,37 @@
 <main id="p-upgrade" class="hidden">
     <div class="upgrade-container">
         <div class="circle-box">
+            <div class="circle-label label-100">100%</div>
+            <div class="circle-label label-50-l">50%</div>
+            <div class="circle-label label-50-r">50%</div>
+            <div class="circle-label label-0">0%</div>
+
             <div class="visual-circle" id="upg-visual"></div>
             <div class="circle-inner">
-                <div id="upg-chance" style="font-size: 3.5rem; font-weight: 900; color: #fff; line-height: 1; transition: 0.3s;">0%</div>
-                <div id="upg-chance-text" style="color: #8b949e; font-size: 0.9rem; margin-bottom: 10px; transition: 0.3s;">средний шанс</div>
-                <div id="upg-target" style="color:var(--gold); font-size: 1.4rem; font-weight: bold; margin-bottom: 5px; transition: 0.3s;" title="Сумма в случае выигрыша">0 ₽</div>
-                <div id="sel-name" style="font-size: 0.95rem; font-weight: bold; color: #c9d1d9; transition: 0.3s;">Выберите предмет ниже</div>
-                <div id="upg-result-text"></div>
+                <div id="upg-chance" style="font-size: 3.5rem; font-weight: 900; color: #fff;">0%</div>
+                <div style="color: #8b949e; font-size: 0.9rem; margin-top: 5px;">средний шанс</div>
+                <div id="upg-target" style="color:var(--gold); font-size: 1.4rem; font-weight: bold; margin-top: 10px;">0 ₽</div>
+                <div id="sel-name" style="font-size: 0.9rem; color: #aaa; margin-top:5px;">Выберите предмет ниже</div>
+                <div id="upg-result-text" style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:40; font-size:2rem; font-weight:900; text-shadow:0 0 10px black;"></div>
             </div>
-            <div class="arrow" id="upg-arrow"></div>
+            
+            <div class="chevron-arrow-wrap" id="upg-arrow-wrap">
+                <div class="chevron-arrow">
+                    <div class="chevron-part"></div>
+                    <div class="chevron-part"></div>
+                </div>
+            </div>
         </div>
         
         <div class="mult-btns">
-            <button class="m-btn" title="Шанс 66%" onclick="App.Logic.setMult(1.5, this)">1.5x</button>
+            <button class="m-btn" title="Шанс 75%" onclick="App.Logic.setMult(1.3333333333333333, this)">75%</button>
             <button class="m-btn active" title="Шанс 50%" onclick="App.Logic.setMult(2, this)">2x</button>
             <button class="m-btn" title="Шанс 20%" onclick="App.Logic.setMult(5, this)">5x</button>
             <button class="m-btn" title="Шанс 10%" onclick="App.Logic.setMult(10, this)">10x</button>
             <input type="number" id="custom-mult" class="input-main" placeholder="Свой X" step="0.1" min="1.1" max="100" oninput="App.Logic.setCustomMult(this.value)" style="width: 80px; padding: 6px; text-align: center;" title="Введите свой множитель">
         </div>
         
-        <button class="btn-main" id="btn-run-upg" disabled onclick="App.Logic.doUpgrade()" title="Испытать удачу!">ПРОКАЧАТЬ!</button>
+        <button class="btn-main" id="btn-run-upg" disabled onclick="App.Logic.doUpgrade()">ПРОКАЧАТЬ!</button>
         <div class="grid" id="upg-inv-list" style="margin-top:20px"></div>
     </div>
 </main>
@@ -315,7 +342,6 @@
     <div class="grid" id="contract-inv-list"></div>
 </main>
 
-<!-- Modals -->
 <div class="modal" id="modal-profile" onclick="if(event.target===this) App.UI.closeModalBox('modal-profile')">
     <div class="modal-content">
         <div class="tabs" id="auth-tabs">
@@ -431,7 +457,6 @@ const App = {
     config: {
         promoCode: "MIKLE10",
         
-        // Отсортированные по цене кейсы
         cases:[
             { name: "Звёзды", price: 20, image: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsQEl9Jg9SpIW1Kgx07OXJYzRD4si72tHbwX2wML-HljoDscEpi7mSotigiw22_EBoNz_3ctDAdQE9O1HpwA" },
             { name: "Петровна", price: 50, image: "petrovna.jpg" },
@@ -496,7 +521,7 @@ const App = {
             stats: { casesOpened: 0, upgradesAttempted: 0, upgradesSuccess: 0, biggestWin: 0, totalSpent: 0, totalEarned: 0, rareItemsFound: 0, highestUpgMult: 0 },
             achievements:[], dailyBonus: { lastClaim: null, streak: 0, available: true },
             contractItems:[], upgSelected: null, activeAction: false, currentWin: null, itemToSell: null, mult: 2,
-            dynamicPromo: null, settings: { soundEnabled: true }
+            dynamicPromo: null, settings: { soundEnabled: true }, currentCase: null
         };
     },
 
@@ -563,21 +588,26 @@ const App = {
     },
 
     Generators: {
-        lootItem: function(caseName) {
+        lootItem: function(casePrice) {
             let rnd = Math.random();
             let targetRarity, priceMultiplier;
 
-            if (rnd <= App.config.dropRates.gold) { targetRarity = 6; priceMultiplier = 5.0 + Math.random() * 45.0; } 
-            else if (rnd <= App.config.dropRates.gold + App.config.dropRates.covert) { targetRarity = 5; priceMultiplier = 1.5 + Math.random() * 3.5; } 
-            else if (rnd <= App.config.dropRates.gold + App.config.dropRates.covert + App.config.dropRates.classified) { targetRarity = 4; priceMultiplier = 0.8 + Math.random() * 0.7; } 
-            else if (rnd <= App.config.dropRates.gold + App.config.dropRates.covert + App.config.dropRates.classified + App.config.dropRates.restricted) { targetRarity = 3; priceMultiplier = 0.4 + Math.random() * 0.4; } 
-            else { targetRarity = 2; priceMultiplier = 0.1 + Math.random() * 0.3; }
+            if (rnd <= 0.37) { // 37% - ОКУП (новый баланс)
+                priceMultiplier = 1.05 + (Math.random() * 4.0);
+                if (priceMultiplier >= 3.0 && Math.random() < 0.15) targetRarity = 6;
+                else if (priceMultiplier >= 1.8) targetRarity = 5;
+                else if (priceMultiplier >= 1.2) targetRarity = 4;
+                else targetRarity = 3;
+            } else {
+                priceMultiplier = 0.1 + (Math.random() * 0.85);
+                if (priceMultiplier < 0.3) targetRarity = 2;
+                else targetRarity = 3;
+            }
 
-            let c = App.config.cases.find(x => x.name === caseName) || App.config.cases[0];
-            let finalPrice = Math.floor(c.price * priceMultiplier);
+            let finalPrice = Math.floor(casePrice * priceMultiplier);
             if (finalPrice < 1) finalPrice = 1;
 
-            let pool = App.skins.catalog[targetRarity];
+            let pool = App.skins.catalog[targetRarity] || App.skins.catalog[2];
             let selected = pool[Math.floor(Math.random() * pool.length)];
 
             return { name: selected.name, price: finalPrice, rarity: targetRarity, iconUrl: selected.img, id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString() + Math.random() };
@@ -773,19 +803,20 @@ const App = {
             App.Achievements.check(); App.Sounds.playClick();
         },
 
-        startOpen: function(caseName) {
+        startOpen: function() {
+            const c = App.state.currentCase;
+            if(!c) return;
             if(!App.requireAuth()) return;
             App.Sounds.caseOpen(); if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
             if(App.state.activeAction) return;
             
-            const c = App.config.cases.find(x => x.name === caseName);
             if(App.state.balance < c.price) return App.UI.showToast("Недостаточно средств!", "error");
             
             App.state.activeAction = true; App.state.balance -= c.price; 
             App.state.stats.casesOpened++; App.state.stats.totalSpent += c.price;
 
             const pool =[]; const winIndex = 30; 
-            for(let i=0; i<50; i++) { pool.push(App.Generators.lootItem(c.name)); }
+            for(let i=0; i<50; i++) { pool.push(App.Generators.lootItem(c.price)); }
             App.state.currentWin = pool[winIndex];
 
             if(App.state.currentWin.price > App.state.stats.biggestWin) App.state.stats.biggestWin = App.state.currentWin.price;
@@ -844,6 +875,7 @@ const App = {
             else { App.state.balance += App.state.currentWin.price; App.state.stats.totalEarned += App.state.currentWin.price; }
             App.state.currentWin = null; App.state.activeAction = false;
             App.Storage.save(); App.UI.closeModalBox('modal-open'); App.UI.updateUI(); App.Achievements.check();
+            if(App.state.currentCase) App.UI.openPage('shop');
         },
 
         confirmSell: function() {
@@ -860,11 +892,11 @@ const App = {
             document.getElementById('custom-mult').value = ''; 
             App.UI.updateUpgCircle();
         },
+
         setCustomMult: function(val) {
             let m = parseFloat(val); if (isNaN(m) || m < 1.01) m = 1.01; if (m > 100) m = 100;
             App.state.mult = m; 
             document.querySelectorAll('.m-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('custom-mult').classList.add('active'); 
             App.UI.updateUpgCircle();
         },
 
@@ -872,13 +904,18 @@ const App = {
             if(!App.currentUser) return;
             App.Sounds.playClick(); 
             if(App.state.activeAction) return;
-
-            // Мгновенный сброс предыдущего состояния перед новым выбором
-            App.UI.resetUpgState();
-
-            App.state.upgSelected = App.state.inventory.find(i => i.id === id);
-            App.UI.updateUpgCircle(); 
+    
+            const selectedItem = App.state.inventory.find(i => i.id === id);
+            if (!selectedItem) return;
+    
+            App.state.upgSelected = selectedItem;
+            App.UI.updateUpgCircle();
             App.UI.renderUpgInv();
+    
+            const btn = document.getElementById('btn-run-upg');
+            if(btn && App.state.upgSelected) {
+                btn.disabled = false;
+            }
         },
 
         doUpgrade: function() {
@@ -886,51 +923,62 @@ const App = {
 
             App.Sounds.playClick(); 
             App.state.activeAction = true; 
-            document.getElementById('btn-run-upg').disabled = true;
+            const btn = document.getElementById('btn-run-upg');
+            if (btn) btn.disabled = true;
+            
             App.state.stats.upgradesAttempted++;
             
-            const arrow = document.getElementById('upg-arrow'); 
             const chance_decimal = (1 / App.state.mult); 
             const chance_deg = chance_decimal * 360;
-            
             const isSuccess = Math.random() <= chance_decimal;
-            let finalAngle;
             
+            // ИЗМЕНЕНИЕ 2: Корректный расчет зоны успеха (центр внизу на 180 градусах физического круга)
+            // Так как стрелка стартует снизу, для попадания в нижнюю зону 
+            // ей нужно сделать поворот около 0 (или 360) градусов.
+            const halfZone = chance_deg / 2;
+            const successStart = 360 - halfZone;
+            const successEnd = 360 + halfZone;
+            
+            let finalAngle;
             if (isSuccess) {
-                // Стрелка указывает вниз (0deg). Сектор центрирован внизу.
-                // Зона успеха: от -(chance_deg / 2) до +(chance_deg / 2)
-                finalAngle = (Math.random() * chance_deg) - (chance_deg / 2);
+                // Если успех: стрелка должна остановиться в радиусе +/- halfZone от нижней точки
+                finalAngle = successStart + (Math.random() * chance_deg);
             } else {
-                // Провал: все остальное пространство
-                let failRange = 360 - chance_deg;
-                finalAngle = (chance_deg / 2) + (Math.random() * failRange);
+                // Если провал: стрелка останавливается в любой другой точке круга
+                const failZoneSize = 360 - chance_deg;
+                const randomFailPoint = Math.random() * failZoneSize;
+                finalAngle = successEnd + randomFailPoint;
             }
             
-            // Вращаем 7 полных кругов + итоговый угол
-            const deg = (360 * 7) + finalAngle; 
+            const fullSpins = 5 + Math.floor(Math.random() * 5);
+            const deg = (fullSpins * 360) + finalAngle; 
             
-            arrow.style.transition = 'transform 6s cubic-bezier(0.15, 0.9, 0.2, 1)'; 
-            arrow.style.transform = `rotate(${deg}deg)`;
+            const arrowWrap = document.getElementById('upg-arrow-wrap');
+            if (arrowWrap) {
+                arrowWrap.style.transition = 'transform 6s cubic-bezier(0.1, 0, 0.1, 1)'; 
+                arrowWrap.style.transform = `rotate(${deg}deg)`;
+            }
 
-            // Звук
-            let delay = 20; let elapsed = 0; const duration = 6000;
-            function spinTick() {
-                if (elapsed > duration - 200) return;
+            let spinCount = 0;
+            const maxSpins = 65;
+            function spinSound() {
+                if (spinCount >= maxSpins || !App.state.activeAction) return;
                 App.Sounds.rouletteSpin();
                 if(navigator.vibrate) navigator.vibrate(5);
-                elapsed += delay; delay += 6;
-                setTimeout(spinTick, delay);
+                spinCount++;
+                setTimeout(spinSound, 80 + (spinCount * 2));
             }
-            spinTick();
+            spinSound();
 
             setTimeout(() => {
                 const resEl = document.getElementById('upg-result-text');
+                const chanceEl = document.getElementById('upg-chance');
+                const targetEl = document.getElementById('upg-target');
+                const selNameEl = document.getElementById('sel-name');
 
-                // Гасим внутренний текст круга
-                document.getElementById('upg-chance').style.opacity = '0.1';
-                document.getElementById('upg-chance-text').style.opacity = '0.1';
-                document.getElementById('upg-target').style.opacity = '0.1';
-                document.getElementById('sel-name').style.opacity = '0.1';
+                if (chanceEl) chanceEl.style.opacity = '0.3';
+                if (targetEl) targetEl.style.opacity = '0.3';
+                if (selNameEl) selNameEl.style.opacity = '0.3';
 
                 if(isSuccess) {
                     App.state.stats.upgradesSuccess++;
@@ -940,43 +988,69 @@ const App = {
                     if(newPrice > App.state.stats.biggestWin) App.state.stats.biggestWin = newPrice;
                     
                     App.state.upgSelected.price = newPrice;
-                    App.state.upgSelected.name = "★ " + App.state.upgSelected.name.replace("★ ", ""); 
+                    if (!App.state.upgSelected.name.startsWith("★ ")) {
+                        App.state.upgSelected.name = "★ " + App.state.upgSelected.name;
+                    }
                     App.state.upgSelected.rarity = 6;
                     
                     App.Sounds.upgradeSuccess();
                     if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
                     
-                    resEl.className = 'success'; resEl.innerText = 'УСПЕХ';
-                    App.UI.showToast("Успех! Предмет улучшен", "gold");
+                    if (resEl) {
+                        resEl.style.display = 'block'; 
+                        resEl.innerText = 'УСПЕХ!'; 
+                        resEl.style.color = '#70ff4d'; 
+                        resEl.style.textShadow = '0 0 20px #70ff4d';
+                    }
+                    App.UI.showToast("Успех! Предмет улучшен! ★", "gold");
                     
-                    App.state.activeAction = false;
-                    App.state.upgSelected = null;
                     App.Storage.save();
-                    
-                    // Обновляем инвентарь внизу без сброса рулетки
+                    App.state.upgSelected = null;
+                    App.state.activeAction = false;
                     App.UI.renderUpgInv();
+                    App.UI.resetUpgState();
                     App.Achievements.check();
 
                 } else { 
                     App.Sounds.upgradeFail();
                     if(navigator.vibrate) navigator.vibrate(200);
                     
-                    resEl.className = 'fail'; resEl.innerText = 'ПРОВАЛ';
+                    if (resEl) {
+                        resEl.style.display = 'block'; 
+                        resEl.innerText = 'ПРОВАЛ!'; 
+                        resEl.style.color = '#ff3e3e'; 
+                        resEl.style.textShadow = '0 0 20px #ff3e3e';
+                    }
                     App.UI.showToast("Неудача! Предмет сгорел", "error");
 
-                    // Анимация сгорания карточки
-                    const c = document.querySelector(`#upg-inv-list .card.selected`);
-                    if (c) c.classList.add('burn-anim');
+                    const selectedCard = document.querySelector(`#upg-inv-list .card.selected`);
+                    if (selectedCard) {
+                        selectedCard.classList.add('burn-anim');
+                    }
+                    
+                    const lostItemId = App.state.upgSelected.id;
                     
                     setTimeout(() => {
-                        App.state.inventory = App.state.inventory.filter(i => i.id !== App.state.upgSelected.id); 
+                        App.state.inventory = App.state.inventory.filter(i => i.id !== lostItemId);
                         App.state.activeAction = false;
                         App.state.upgSelected = null;
                         App.Storage.save();
-                        
-                        App.UI.renderUpgInv(); // Обновляем инвентарь внизу без сброса рулетки
+                        App.UI.renderUpgInv();
+                        App.UI.resetUpgState();
                     }, 800);
                 }
+                
+                setTimeout(() => {
+                    if (resEl) resEl.style.display = 'none';
+                    if (chanceEl) chanceEl.style.opacity = '1';
+                    if (targetEl) targetEl.style.opacity = '1';
+                    if (selNameEl) selNameEl.style.opacity = '1';
+                    
+                    if (arrowWrap) {
+                        arrowWrap.style.transition = 'none';
+                        arrowWrap.style.transform = 'rotate(0deg)';
+                    }
+                }, 2500);
             }, 6200);
         }
     },
@@ -1007,10 +1081,15 @@ const App = {
         toggleMenu: function() { document.getElementById('userDropdown').classList.toggle('active'); },
         openPage: function(p) {
             document.querySelectorAll('main').forEach(m => m.classList.add('hidden')); 
-            document.getElementById('p-' + p).classList.remove('hidden'); document.getElementById('userDropdown').classList.remove('active');
+            document.getElementById('p-' + p).classList.remove('hidden'); 
+            document.getElementById('userDropdown').classList.remove('active');
             if(p === 'inv') App.UI.renderInv(); 
-            if(p === 'upgrade') App.UI.renderUpgInv(); 
+            if(p === 'upgrade') {
+                App.UI.renderUpgInv();
+                App.UI.resetUpgState();
+            }
             if(p === 'contracts') App.UI.renderContracts();
+            if(p === 'shop') App.state.currentCase = null;
         },
         openModalBox: function(id) { document.getElementById(id).classList.add('active'); if(id === 'modal-profile') App.UI.renderProfile(); },
         closeModalBox: function(id) { 
@@ -1051,12 +1130,30 @@ const App = {
         },
         renderShop: function() {
             document.getElementById('cases-list').innerHTML = App.config.cases.map(c => `
-                <div class="card" onclick="if(App.requireAuth()) App.Logic.startOpen('${c.name}')" title="Открыть кейс">
+                <div class="card" onclick="App.UI.showCaseDetail('${c.name}')" title="Открыть кейс">
                     <div class="case-display" style="background-image: url('${c.image}');"></div>
                     <div style="font-weight:bold; margin-bottom: 5px; min-height: 40px; display:flex; align-items:center; justify-content:center;">${c.name}</div>
                     <div class="card-price">${c.price.toLocaleString()} ₽</div>
                 </div>
             `).join('');
+        },
+        showCaseDetail: function(name) {
+            const c = App.config.cases.find(x => x.name == name);
+            if(!c) return;
+            App.state.currentCase = c;
+            App.UI.openPage('case-detail');
+            document.getElementById('det-title').innerText = c.name;
+            document.getElementById('det-img').src = c.image;
+            document.getElementById('btn-open-case').innerText = `Открыть за ${c.price} ₽`;
+            document.getElementById('btn-open-case').onclick = () => App.Logic.startOpen();
+            
+            let contents = "";
+            for(let r = 6; r >= 2; r--) {
+                App.skins.catalog[r]?.forEach(s => {
+                    contents += `<div class="card" style="border-bottom:3px solid var(--rarity-${r})"><img src="${s.img}" class="skin-icon"><div style="font-size:0.7rem;">${s.name}</div></div>`;
+                });
+            }
+            document.getElementById('case-content-grid').innerHTML = contents || "<p>Скоро добавим...</p>";
         },
         renderInv: function() {
             const sortVal = document.getElementById('inv-sort').value; let arr = [...App.state.inventory];
@@ -1079,57 +1176,73 @@ const App = {
             App.UI.openModalBox('modal-sell');
         },
 
-        /* ОБНОВЛЕННАЯ ЛОГИКА ОТРИСОВКИ КОЛЕСА */
         updateUpgCircle: function() {
-            if(!App.state.upgSelected) return;
+            if(!App.state.upgSelected) {
+                document.getElementById('upg-visual').style.background = "none";
+                document.getElementById('upg-chance').innerText = "0%";
+                document.getElementById('btn-run-upg').disabled = true;
+                return;
+            }
             const m = App.state.mult;
             const chance_decimal = 1 / m;
             const chance_percent = chance_decimal * 100;
             const chance_deg = chance_decimal * 360;
 
             document.getElementById('upg-chance').innerText = chance_percent.toFixed(chance_percent % 1 === 0 ? 0 : 1) + "%";
-
-            // Сектор успеха должен быть строго внизу (симметрично относительно 180deg)
-            const start_deg = 180 - (chance_deg / 2);
-            document.getElementById('upg-visual').style.background = `conic-gradient(from ${start_deg}deg, var(--gold) 0deg ${chance_deg}deg, transparent ${chance_deg}deg 360deg)`;
+            
+            // ИЗМЕНЕНИЕ 3: Отрисовка сектора успеха
+            // Центруем сектор строго внизу (180 градусов). Распределяем пополам влево и вправо.
+            const halfZone = chance_deg / 2;
+            const startAngle = 180 - halfZone;
+            const endAngle = 180 + halfZone;
+            
+            document.getElementById('upg-visual').style.background = `conic-gradient(from 0deg, 
+                transparent 0deg ${startAngle}deg, 
+                #52a038 ${startAngle}deg ${endAngle}deg, 
+                transparent ${endAngle}deg 360deg)`;
             
             document.getElementById('upg-target').innerText = Math.floor(App.state.upgSelected.price * m).toLocaleString() + " ₽";
             document.getElementById('sel-name').innerText = App.state.upgSelected.name;
             document.getElementById('sel-name').style.color = `var(--rarity-${App.state.upgSelected.rarity})`;
-            document.getElementById('btn-run-upg').disabled = false;
+            
+            const btn = document.getElementById('btn-run-upg');
+            if(btn) btn.disabled = false;
         },
 
         renderUpgInv: function() {
-            document.getElementById('upg-inv-list').innerHTML =[...App.state.inventory].reverse().map(i => 
-                `<div class="card inv-card ${App.state.upgSelected?.id === i.id ? 'selected' : ''}" style="border-bottom-color: var(--rarity-${i.rarity});" onclick="App.Logic.selectForUpg('${i.id}')">
+            if(!App.state.inventory || App.state.inventory.length === 0) {
+                document.getElementById('upg-inv-list').innerHTML = "<p style='grid-column:1/-1; text-align:center;'>Нет предметов для апгрейда. Откройте кейсы!</p>";
+                return;
+            }
+    
+            document.getElementById('upg-inv-list').innerHTML = App.state.inventory.map(i => `
+                <div class="card inv-card ${App.state.upgSelected?.id === i.id ? 'selected' : ''}" style="border-bottom-color: var(--rarity-${i.rarity}); cursor:pointer;" onclick="App.Logic.selectForUpg('${i.id}')">
                     <img src="${i.iconUrl}" class="skin-icon" onerror="this.src='https://placehold.co/80x80/1a1a1a/fff?text=Skin'">
                     <div style="font-size:0.7rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${i.name}</div>
                     <div class="card-price" style="font-size:0.8rem;">${i.price.toLocaleString()} ₽</div>
-                </div>`
-            ).join('') || "<p style='grid-column:1/-1; text-align:center;'>Нет предметов</p>";
+                </div>
+            `).join('');
         },
 
         resetUpgState: function() {
             App.state.activeAction = false; 
             App.state.upgSelected = null;
             
-            // Мгновенный сброс стрелки строго вниз (0deg) без анимации
-            const arrow = document.getElementById('upg-arrow');
-            arrow.style.transition = 'none'; 
-            arrow.style.transform = 'rotate(0deg)'; 
-            void arrow.offsetWidth; // Принудительный рефлоу для мгновенного применения
+            const arrowWrap = document.getElementById('upg-arrow-wrap');
+            if (arrowWrap) {
+                arrowWrap.style.transition = 'none'; 
+                arrowWrap.style.transform = 'rotate(0deg)'; 
+            }
 
             document.getElementById('btn-run-upg').disabled = true; 
             document.getElementById('upg-chance').innerText = "0%"; 
-            document.getElementById('upg-visual').style.background = `none`; 
+            document.getElementById('upg-visual').style.background = "none"; 
             document.getElementById('upg-target').innerText = "0 ₽";
             document.getElementById('sel-name').innerText = "Выберите предмет ниже"; 
             document.getElementById('sel-name').style.color = "#c9d1d9";
 
-            // Сброс текста результата и прозрачности
-            document.getElementById('upg-result-text').className = '';
+            document.getElementById('upg-result-text').style.display = 'none';
             document.getElementById('upg-chance').style.opacity = '1';
-            document.getElementById('upg-chance-text').style.opacity = '1';
             document.getElementById('upg-target').style.opacity = '1';
             document.getElementById('sel-name').style.opacity = '1';
         },
